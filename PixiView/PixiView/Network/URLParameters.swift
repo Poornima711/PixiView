@@ -11,6 +11,7 @@ enum ResponseStatusCode: Int {
     case success = 200
     case badRequest = 400
     case unauthorised = 401
+    case tooManyRequests = 429
     case serverError = 500
 }
 
