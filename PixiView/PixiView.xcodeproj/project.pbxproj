@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1B21156025B1CFB700732633 /* ApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B21155F25B1CFB700732633 /* ApiHandler.swift */; };
 		1B21159F25B1D3DA00732633 /* URLParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B21159E25B1D3DA00732633 /* URLParameters.swift */; };
+		1B2115A325B1F13900732633 /* PixaBayHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115A225B1F13900732633 /* PixaBayHandler.swift */; };
+		1B2115A725B1F1F600732633 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115A625B1F1F600732633 /* URLConstants.swift */; };
 		1B291ED725B1A62C002B6B8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B291ED625B1A62C002B6B8E /* AppDelegate.swift */; };
 		1B291ED925B1A62C002B6B8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B291ED825B1A62C002B6B8E /* SceneDelegate.swift */; };
 		1B291EDB25B1A62C002B6B8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B291EDA25B1A62C002B6B8E /* ViewController.swift */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		1B21155F25B1CFB700732633 /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
 		1B21159E25B1D3DA00732633 /* URLParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameters.swift; sourceTree = "<group>"; };
+		1B2115A225B1F13900732633 /* PixaBayHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixaBayHandler.swift; sourceTree = "<group>"; };
+		1B2115A625B1F1F600732633 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
 		1B291ED325B1A62C002B6B8E /* PixiView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixiView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B291ED625B1A62C002B6B8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B291ED825B1A62C002B6B8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +54,22 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		1B2115A125B1F10F00732633 /* PixaBay */ = {
+			isa = PBXGroup;
+			children = (
+				1B2115A225B1F13900732633 /* PixaBayHandler.swift */,
+			);
+			path = PixaBay;
+			sourceTree = "<group>";
+		};
+		1B2115A525B1F1E600732633 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				1B2115A625B1F1F600732633 /* URLConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		1B291ECA25B1A62C002B6B8E = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +89,8 @@
 		1B291ED525B1A62C002B6B8E /* PixiView */ = {
 			isa = PBXGroup;
 			children = (
+				1B2115A525B1F1E600732633 /* Constants */,
+				1B2115A125B1F10F00732633 /* PixaBay */,
 				1B21155E25B1CF9200732633 /* Network */,
 				1B291ED625B1A62C002B6B8E /* AppDelegate.swift */,
 				1B291ED825B1A62C002B6B8E /* SceneDelegate.swift */,
@@ -173,7 +195,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B291EDB25B1A62C002B6B8E /* ViewController.swift in Sources */,
+				1B2115A325B1F13900732633 /* PixaBayHandler.swift in Sources */,
 				1B291ED725B1A62C002B6B8E /* AppDelegate.swift in Sources */,
+				1B2115A725B1F1F600732633 /* URLConstants.swift in Sources */,
 				1B21159F25B1D3DA00732633 /* URLParameters.swift in Sources */,
 				1B291ED925B1A62C002B6B8E /* SceneDelegate.swift in Sources */,
 				1B21156025B1CFB700732633 /* ApiHandler.swift in Sources */,
