@@ -9,6 +9,8 @@ import Foundation
 
 class ApiHandler: NSObject {
     
+    static let sharedInstance: ApiHandler = ApiHandler()
+    
     func sendRequestToServer(serviceParameters: URLRequestParameters, completionHandler: @escaping ((_ apiRequestResponse: ApiServiceRequestResponse<Data, ApiError>) -> Void)) {
         
         let config = URLSessionConfiguration.default

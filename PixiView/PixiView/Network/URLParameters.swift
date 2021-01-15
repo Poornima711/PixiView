@@ -60,23 +60,7 @@ struct URLRequestParameters {
             guard let url = URL(string: requestURL) else {
                 return (nil, "URL string passed is not valid")
             }
-            var request = URLRequest(url: url)
-            request.httpMethod = requestType.rawValue
-            request.cachePolicy = requestCachingPolicy
-            request.timeoutInterval = requestTimeOut
-            // pass dictionary to nsdata object and set it as request body
-            if let requestParams = requestParams {
-                do {
-                    request.httpBody = try JSONSerialization.data(withJSONObject: requestParams, options: .prettyPrinted)
-                } catch let error {
-                    print(error.localizedDescription)
-                }
-            }
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            for header in additionalHeaders {
-                request.addValue(header.value, forHTTPHeaderField: header.key)
-            }
+            let request = handlePostRequest(url: url)
             return (request, "")
         case .get:
             guard var components = URLComponents(string: requestURL) else {
@@ -94,14 +78,41 @@ struct URLRequestParameters {
             guard let url = components.url else {
                 return (nil, "URL string passed is not valid")
             }
-            var request = URLRequest(url: url)
-            request.httpMethod = requestType.rawValue
-            request.cachePolicy = requestCachingPolicy
-            request.timeoutInterval = requestTimeOut
-            for header in additionalHeaders {
-                request.addValue(header.value, forHTTPHeaderField: header.key)
-            }
+            let request = handleGetRequest(url: url)
             return (request, "")
         }
+    }
+    
+    func handlePostRequest(url: URL) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.httpMethod = requestType.rawValue
+        request.cachePolicy = requestCachingPolicy
+        request.timeoutInterval = requestTimeOut
+        // pass dictionary to nsdata object and set it as request body
+        if let requestParams = requestParams {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: requestParams, options: .prettyPrinted)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        for header in additionalHeaders {
+            request.addValue(header.value, forHTTPHeaderField: header.key)
+        }
+        
+        return request
+    }
+    
+    func handleGetRequest(url: URL) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.httpMethod = requestType.rawValue
+        request.cachePolicy = requestCachingPolicy
+        request.timeoutInterval = requestTimeOut
+        for header in additionalHeaders {
+            request.addValue(header.value, forHTTPHeaderField: header.key)
+        }
+        return request
     }
 }
