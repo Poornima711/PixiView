@@ -15,4 +15,8 @@ class PhotoCell: UICollectionViewCell {
     override class func awakeFromNib() {
         //
     }
+    
+    func setDataToCell(index: Int,photoArray: [UIImage]) {
+        self.imageView.image = photoArray[index]
+    }
 }

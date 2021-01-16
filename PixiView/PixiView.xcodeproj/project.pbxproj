@@ -14,6 +14,8 @@
 		1B2115B225B202F800732633 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115B125B202F800732633 /* PhotoCell.swift */; };
 		1B2115B525B2032600732633 /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2115B425B2032600732633 /* PhotoCell.xib */; };
 		1B2115B925B20A8A00732633 /* PhotoDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115B825B20A8A00732633 /* PhotoDataEntity.swift */; };
+		1B2115BE25B2D0B100732633 /* PhotoDataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115BD25B2D0B100732633 /* PhotoDataPresenter.swift */; };
+		1B2115C225B2D87800732633 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115C125B2D87800732633 /* PhotoCollectionViewController.swift */; };
 		1B291ED725B1A62C002B6B8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B291ED625B1A62C002B6B8E /* AppDelegate.swift */; };
 		1B291ED925B1A62C002B6B8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B291ED825B1A62C002B6B8E /* SceneDelegate.swift */; };
 		1B291EDB25B1A62C002B6B8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B291EDA25B1A62C002B6B8E /* ViewController.swift */; };
@@ -30,6 +32,8 @@
 		1B2115B125B202F800732633 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		1B2115B425B2032600732633 /* PhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
 		1B2115B825B20A8A00732633 /* PhotoDataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDataEntity.swift; sourceTree = "<group>"; };
+		1B2115BD25B2D0B100732633 /* PhotoDataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDataPresenter.swift; sourceTree = "<group>"; };
+		1B2115C125B2D87800732633 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		1B291ED325B1A62C002B6B8E /* PixiView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixiView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B291ED625B1A62C002B6B8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B291ED825B1A62C002B6B8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 		1B2115A125B1F10F00732633 /* PixaBay */ = {
 			isa = PBXGroup;
 			children = (
+				1B2115BC25B2D09700732633 /* Presenter */,
 				1B2115AE25B202A000732633 /* Model */,
 				1B2115AB25B2026700732633 /* View */,
 			);
@@ -99,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				1B291EDA25B1A62C002B6B8E /* ViewController.swift */,
+				1B2115C125B2D87800732633 /* PhotoCollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -119,6 +125,14 @@
 				1B2115B425B2032600732633 /* PhotoCell.xib */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		1B2115BC25B2D09700732633 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1B2115BD25B2D0B100732633 /* PhotoDataPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		1B291ECA25B1A62C002B6B8E = {
@@ -244,9 +258,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B2115C225B2D87800732633 /* PhotoCollectionViewController.swift in Sources */,
 				1B291EDB25B1A62C002B6B8E /* ViewController.swift in Sources */,
 				1B2115B225B202F800732633 /* PhotoCell.swift in Sources */,
 				1B2115A325B1F13900732633 /* PhotoDataModel.swift in Sources */,
+				1B2115BE25B2D0B100732633 /* PhotoDataPresenter.swift in Sources */,
 				1B291ED725B1A62C002B6B8E /* AppDelegate.swift in Sources */,
 				1B2115B925B20A8A00732633 /* PhotoDataEntity.swift in Sources */,
 				1B2115A725B1F1F600732633 /* URLConstants.swift in Sources */,

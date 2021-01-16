@@ -49,7 +49,7 @@ class PhotoDataModel: NSObject {
         }
     }
     
-    func downloadImage(url: String) {
+    func downloadImage(url: String, completion: @escaping (_ success: Bool) -> Void) {
         ApiHandler.sharedInstance.downloadImageFromURL(url: url) { (requestResponse) in
             let statusCode = (requestResponse.response as? HTTPURLResponse)?.statusCode ?? 0
             switch statusCode {
@@ -58,8 +58,10 @@ class PhotoDataModel: NSObject {
                 case .success(let data):
                     let image = UIImage(data: data) ?? UIImage()
                     self.photoArray.append(image)
+                    completion(true)
                 case .failure(let error):
                     print(error)
+                    completion(false)
                 }
             case ResponseStatusCode.badRequest.rawValue:
                 print("Bad Access")
@@ -75,7 +77,7 @@ class PhotoDataModel: NSObject {
         }
     }
     
-    func getImageArray() -> [UIImage] {
+    func setImageArray() -> [UIImage] {
         if photoArray.isEmpty { return [UIImage]() }
         return photoArray
     }
