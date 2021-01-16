@@ -18,8 +18,8 @@ class PhotoDataPresenter {
         self.controller = controller
     }
     
-    func getSearchResult(searchKey: String, completion: @escaping (_ success: Bool) -> Void) {
-        dataModel.callSearch(for: searchKey) { (photoData) in
+    func getSearchResult(searchKey: String, pageNumber: Int, completion: @escaping (_ success: Bool) -> Void) {
+        dataModel.callSearch(for: searchKey, page: "\(pageNumber)") { (photoData) in
             if photoData?.hits.count == 0 {
                 self.controller?.showAlertOnNoResults()
                 completion(false)

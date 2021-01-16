@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     var presenter: PhotoDataPresenter?
     var responseObject: PhotoResponse?
     var pageViewController: UIPageViewController?
+    var totalImages: Int?
+    var page = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +40,11 @@ class ViewController: UIViewController {
         photoCollectionView.register(UINib(nibName: "PhotoCell", bundle: nil), forCellWithReuseIdentifier: "PhotoCell")
     }
     
-    func callSearchApi(query: String) {
-        presenter?.getSearchResult(searchKey: query) { (success) in
+    func callSearchApi(query: String, pageNumber: Int) {
+        presenter?.getSearchResult(searchKey: query, pageNumber: pageNumber) { (success) in
             if success {
                 self.responseObject = self.presenter?.getResponseObject()
+                self.totalImages = self.responseObject?.totalHits
                 self.photoCollectionView.reloadData()
             }
         }
@@ -61,7 +64,8 @@ extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.searchTextField.text else { return }
         self.helpLabel.isHidden = true
-        callSearchApi(query: query)
+        page = 1
+        callSearchApi(query: query, pageNumber: page)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

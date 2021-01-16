@@ -14,9 +14,9 @@ class PhotoDataModel: NSObject {
     private var photoArray: [UIImage] = []
     private var largeImages: [UIImage] = []
     
-    func callSearch(for searchKey: String, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
+    func callSearch(for searchKey: String, page: String, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
         let urlString = URLConstants.searchURL
-        let inputParams: [String: AnyObject] = ["key": apiKey as AnyObject, "q": searchKey as AnyObject, "image_type": "photo" as AnyObject]
+        let inputParams: [String: AnyObject] = ["key": apiKey as AnyObject, "q": searchKey as AnyObject, "image_type": "photo" as AnyObject, "page": page as AnyObject]
         let request = URLRequestParameters(requestURL: urlString, requestType: .get, requestParams: inputParams)
         self.photoArray.removeAll()
         self.largeImages.removeAll()

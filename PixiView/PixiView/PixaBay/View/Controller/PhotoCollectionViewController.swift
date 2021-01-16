@@ -22,6 +22,21 @@ extension ViewController: UICollectionViewDataSource {
         }
         return cell
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        if indexPath.row == (self.responseObject?.hits.count ?? 0) - 1 {  //numberofitem count
+//            page += 1
+//            guard let text = searchBar.text else { return }
+//            self.responseObject = nil
+//            callSearchApi(query: text, pageNumber: page)
+//        }
+//    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        page += 1
+        guard let text = searchBar.text else { return }
+        callSearchApi(query: text, pageNumber: page)
+    }
 }
 
 extension ViewController: UICollectionViewDelegate {
