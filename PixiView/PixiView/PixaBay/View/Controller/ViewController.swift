@@ -64,4 +64,11 @@ extension ViewController: UISearchBarDelegate {
         callSearchApi(query: query)
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.isEmpty ?? false {
+            helpLabel.isHidden = false
+            responseObject = nil
+            photoCollectionView.reloadData()
+        }
+    }
 }
