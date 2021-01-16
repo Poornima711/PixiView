@@ -9,8 +9,9 @@ import UIKit
 
 class ImageCollectionViewController: UICollectionViewController {
     
-    var index: IndexPath?
+    var index: Int?
     var photoArray: [UIImage]?
+    var currentImage: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +50,8 @@ class ImageCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BigImageCell", for: indexPath) as? BigImageCell
-        //cell?.setCellData(index: indexPath.row, photoArray: photoArray)
-        cell?.showImage(image: photoArray?[index?.row ?? 0] ?? UIImage())
-        //collectionView.scrollToItem(at: index ?? IndexPath(), at: .centeredHorizontally, animated: false)
+        cell?.setCellData(index: indexPath.row, photoArray: photoArray)
+        cell?.showImage(image: currentImage ?? UIImage())
         return cell ?? UICollectionViewCell()
     }
 }

@@ -6,3 +6,4 @@ disabled_rules: # rule identifiers to exclude from running
 
 line_length:
     ignores_function_declarations: true
+    warning: 200

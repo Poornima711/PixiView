@@ -37,6 +37,7 @@ struct PhotoData: Decodable {
     var imageURL: String = ""
     var largeImageURL: String = ""
     var userImageURL: String = ""
+    var webformatURL: String = ""
     
     enum PhotoDataKeys: String, CodingKey {
         case id
@@ -44,6 +45,7 @@ struct PhotoData: Decodable {
         case imageURL
         case largeImageURL
         case userImageURL
+        case webformatURL
     }
     
     init(from decoder: Decoder) throws {
@@ -53,5 +55,6 @@ struct PhotoData: Decodable {
         imageURL = try container.decodeIfPresent(String.self, forKey: .imageURL) ?? ""
         largeImageURL = try container.decodeIfPresent(String.self, forKey: .largeImageURL) ?? ""
         userImageURL = try container.decodeIfPresent(String.self, forKey: .userImageURL) ?? ""
+        webformatURL = try container.decodeIfPresent(String.self, forKey: .webformatURL) ?? ""
     }
 }

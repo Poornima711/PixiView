@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
     var presenter: PhotoDataPresenter?
+    var responseObject: PhotoResponse?
     var photoArray = [UIImage]()
     var largeImages = [UIImage]()
     
@@ -30,7 +31,7 @@ class ViewController: UIViewController {
             return presenter?.getLargeImagesArray() ?? [UIImage]()
         }
         set {
-            self.photoArray = newValue
+            self.largeImages = newValue
         }
     }
 
@@ -56,6 +57,7 @@ class ViewController: UIViewController {
     func callSearchApi(query: String) {
         presenter?.getSearchResult(searchKey: query) { (success) in
             if success {
+                self.responseObject = self.presenter?.getResponseObject()
                 self.photoCollectionView.reloadData()
             }
         }

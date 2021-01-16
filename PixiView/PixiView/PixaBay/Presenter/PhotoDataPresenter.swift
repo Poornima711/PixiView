@@ -12,6 +12,7 @@ class PhotoDataPresenter {
     
     private let dataModel = PhotoDataModel()
     private var controller: ViewController?
+    private var responseObject: PhotoResponse?
     
     init(controller: ViewController) {
         self.controller = controller
@@ -25,6 +26,7 @@ class PhotoDataPresenter {
                 _ = photoData?.hits.map {
                     self.dataModel.downloadImage(url: $0.previewURL) { (success) in
                         if success {
+                            self.responseObject = photoData
                             self.controller?.imgArray = self.getPhotoArray()
                             self.downloadLargeImages(response: photoData)
                             completion(true)
@@ -39,12 +41,25 @@ class PhotoDataPresenter {
     
     func downloadLargeImages(response: PhotoResponse?) {
         _ = response?.hits.map {
-            self.dataModel.downloadImage(url: $0.largeImageURL) { (success) in
+            self.dataModel.downloadLargeImage(url: $0.webformatURL) { (success) in
                 if success {
                     self.controller?.largeImgArray = self.getLargeImagesArray()
                 }
             }
         }
+    }
+    
+    func downloadSingleLargeImages(url: String) -> UIImage? {
+        let img = self.dataModel.downloadImg(url: url) { (success) in
+            if success {
+                print("Success")
+            }
+        }
+        return img
+    }
+    
+    func getResponseObject() -> PhotoResponse? {
+        return self.responseObject
     }
     
     func getPhotoArray() -> [UIImage] {

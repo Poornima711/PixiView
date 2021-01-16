@@ -26,7 +26,10 @@ extension ViewController: UICollectionViewDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let controller = storyboard.instantiateViewController(withIdentifier: "ImageCollectionViewController") as? ImageCollectionViewController else { return }
         controller.photoArray = self.largeImgArray
-        controller.index = indexPath
+        controller.index = indexPath.row
+        if let url = self.responseObject?.hits[indexPath.row].webformatURL {
+            controller.currentImage = self.presenter?.downloadSingleLargeImages(url: url)
+        }
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
