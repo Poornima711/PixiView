@@ -10,12 +10,16 @@ import UIKit
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoArray.count
+        return responseObject?.hits.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
-        cell.setDataToCell(index: indexPath.row, photoArray: photoArray)
+        if let url = responseObject?.hits[indexPath.row].previewURL {
+            self.presenter?.download(url: url) { (image) in
+                cell.setImage(img: image ?? UIImage())
+            }
+        }
         return cell
     }
 }
@@ -23,14 +27,28 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: "ImageCollectionViewController") as? ImageCollectionViewController else { return }
-        controller.photoArray = self.largeImgArray
-        controller.index = indexPath.row
-        if let url = self.responseObject?.hits[indexPath.row].webformatURL {
-            controller.currentImage = self.presenter?.downloadSingleLargeImages(url: url)
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        self.pageViewController = storyBoard.instantiateViewController(withIdentifier: "ImagePageViewController" ) as? ImagePageViewController
+        
+        self.pageViewController?.dataSource = self
+        self.pageViewController?.delegate = self
+        self.pageViewController?.view.frame = self.view.frame
+        
+        guard let controller = pageViewController else { return }
+        
+        let startingViewController: ImageViewController! = self.viewForIndex(index: indexPath.row)
+        startingViewController.view.frame = CGRect(x: 0, y: 0, width: controller.view.frame.width, height: controller.view.frame.height)
+        
+        let viewControllers: NSArray = [startingViewController as Any]
+        self.pageViewController?.setViewControllers(viewControllers as? [UIViewController], direction: UIPageViewController.NavigationDirection.forward, animated: true, completion: nil)
+        
+        if self.title != nil {
+            self.pageViewController?.navigationItem.title = self.title
         }
+        
         self.navigationController?.pushViewController(controller, animated: true)
+     
+        collectionView.contentInsetAdjustmentBehavior = .never
     }
     
 }

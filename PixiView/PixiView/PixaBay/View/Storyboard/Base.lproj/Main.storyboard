@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LqN-Rt-PJV">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LqN-Rt-PJV">
                                 <rect key="frame" x="0.0" y="144" width="414" height="718"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="U8g-E8-Uy9">
@@ -58,30 +58,42 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="86.383928571428569"/>
         </scene>
-        <!--Image Collection View Controller-->
-        <scene sceneID="xyY-2t-Xfh">
+        <!--Image Page View Controller-->
+        <scene sceneID="WZM-eb-OoZ">
             <objects>
-                <collectionViewController storyboardIdentifier="ImageCollectionViewController" id="Jjm-C6-vQJ" customClass="ImageCollectionViewController" customModule="PixiView" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="epX-Ry-kf4">
+                <pageViewController storyboardIdentifier="ImagePageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="I1n-YE-c8j" customClass="ImagePageViewController" customModule="PixiView" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BPF-IP-dpp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1967" y="86"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="FhE-IN-kDY">
+            <objects>
+                <viewController storyboardIdentifier="ImageViewController" id="NRu-pg-A8j" customClass="ImageViewController" customModule="PixiView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p00-Ph-yjq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dAd-zi-8yC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QH8-AD-nRQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8tn-Bw-wTG">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="Jjm-C6-vQJ" id="Agh-bw-TTp"/>
-                            <outlet property="delegate" destination="Jjm-C6-vQJ" id="Vzl-oR-MNj"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cHz-nd-ced" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="dAd-zi-8yC" firstAttribute="leading" secondItem="QH8-AD-nRQ" secondAttribute="leading" id="8Uj-GW-6A5"/>
+                            <constraint firstItem="dAd-zi-8yC" firstAttribute="top" secondItem="QH8-AD-nRQ" secondAttribute="top" id="B3H-rO-aj8"/>
+                            <constraint firstItem="QH8-AD-nRQ" firstAttribute="trailing" secondItem="dAd-zi-8yC" secondAttribute="trailing" id="YAl-MS-X10"/>
+                            <constraint firstItem="QH8-AD-nRQ" firstAttribute="bottom" secondItem="dAd-zi-8yC" secondAttribute="bottom" id="wZ3-0c-I24"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="dAd-zi-8yC" id="p6I-lv-Thq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vOR-Mh-z27" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1907" y="86"/>
+            <point key="canvasLocation" x="2928" y="89"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="312-fI-Cw4">

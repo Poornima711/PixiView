@@ -14,26 +14,7 @@ class ViewController: UIViewController {
     
     var presenter: PhotoDataPresenter?
     var responseObject: PhotoResponse?
-    var photoArray = [UIImage]()
-    var largeImages = [UIImage]()
-    
-    var imgArray: [UIImage] {
-        get {
-            return presenter?.getPhotoArray() ?? [UIImage]()
-        }
-        set {
-            self.photoArray = newValue
-        }
-    }
-    
-    var largeImgArray: [UIImage] {
-        get {
-            return presenter?.getLargeImagesArray() ?? [UIImage]()
-        }
-        set {
-            self.largeImages = newValue
-        }
-    }
+    var pageViewController: UIPageViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,16 +50,46 @@ class ViewController: UIViewController {
         alert.addAction(action)
         self.navigationController?.present(alert, animated: true, completion: nil)
     }
+    
+    func viewForIndex(index: Int) -> ImageViewController {
+        
+        let storyboard =  UIStoryboard(name: "Main", bundle: nil)
+        
+        let pageContentObj: ImageViewController = ((storyboard.instantiateViewController(withIdentifier: "ImageViewController")) as? ImageViewController)!
+        
+        pageContentObj.index = index
+        pageContentObj.url = self.responseObject?.hits[index].largeImageURL ?? ""
+        if let url = self.responseObject?.hits[index].largeImageURL {
+            self.presenter?.download(url: url, completion: { (image) in
+                pageContentObj.image = image
+                pageContentObj.setImage(image: image ?? UIImage())
+            })
+        }        
+        return pageContentObj
+    }
 }
 
 extension ViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.searchTextField.text else { return }
-        self.photoArray.removeAll()
         callSearchApi(query: query)
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+}
+
+extension ViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    // MARK: - paging delegates
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        
+        guard let temp = viewController as? ImageViewController else { return UIViewController() }
+        //temp.presenter = nil
+        return temp.index >= (self.responseObject?.hits.count ?? 0 - 1) ? nil: self.viewForIndex(index: temp.index + 1)
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let temp = viewController as? ImageViewController else { return UIViewController() }
+        //temp.presenter = nil
+        return temp.index == 0 ? nil: self.viewForIndex(index: temp.index - 1)
     }
 }

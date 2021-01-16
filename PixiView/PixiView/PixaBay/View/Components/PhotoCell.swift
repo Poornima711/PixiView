@@ -21,4 +21,8 @@ class PhotoCell: UICollectionViewCell {
             self.imageView.image = photoArray[index]
         }
     }
+    
+    func setImage(img: UIImage) {
+        self.imageView.image = img
+    }
 }

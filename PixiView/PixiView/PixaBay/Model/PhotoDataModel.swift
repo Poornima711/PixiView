@@ -51,19 +51,17 @@ class PhotoDataModel: NSObject {
         }
     }
     
-    func downloadImage(url: String, completion: @escaping (_ success: Bool) -> Void) {
+    func downloadImage(url: String, completion: @escaping (_ response: Data?) -> Void) {
         ApiHandler.sharedInstance.downloadImageFromURL(url: url) { (requestResponse) in
             let statusCode = (requestResponse.response as? HTTPURLResponse)?.statusCode ?? 0
             switch statusCode {
             case ResponseStatusCode.success.rawValue:
                 switch requestResponse.requestStatus {
                 case .success(let data):
-                    let image = UIImage(data: data) ?? UIImage()
-                    self.photoArray.append(image)
-                    completion(true)
+                    completion(data)
                 case .failure(let error):
                     print(error)
-                    completion(false)
+                    completion(nil)
                 }
             case ResponseStatusCode.badRequest.rawValue:
                 print("Bad Access")
@@ -77,65 +75,6 @@ class PhotoDataModel: NSObject {
                 print("Error")
             }
         }
-    }
-    
-    func downloadLargeImage(url: String, completion: @escaping (_ success: Bool) -> Void) {
-        ApiHandler.sharedInstance.downloadImageFromURL(url: url) { (requestResponse) in
-            let statusCode = (requestResponse.response as? HTTPURLResponse)?.statusCode ?? 0
-            switch statusCode {
-            case ResponseStatusCode.success.rawValue:
-                switch requestResponse.requestStatus {
-                case .success(let data):
-                    let image = UIImage(data: data) ?? UIImage()
-                    self.largeImages.append(image)
-                    completion(true)
-                case .failure(let error):
-                    print(error)
-                    completion(false)
-                }
-            case ResponseStatusCode.badRequest.rawValue:
-                print("Bad Access")
-            case ResponseStatusCode.serverError.rawValue:
-                print("Server Error")
-            case ResponseStatusCode.tooManyRequests.rawValue:
-                print("Too many requests received. Try after some time")
-            case ResponseStatusCode.unauthorised.rawValue:
-                print("Unauthorised")
-            default:
-                print("Error")
-            }
-        }
-    }
-    
-    func downloadImg(url: String, completion: @escaping (_ success: Bool) -> Void) -> UIImage? {
-        var newImage: UIImage?
-        ApiHandler.sharedInstance.downloadImageFromURL(url: url) { (requestResponse) in
-            let statusCode = (requestResponse.response as? HTTPURLResponse)?.statusCode ?? 0
-            switch statusCode {
-            case ResponseStatusCode.success.rawValue:
-                switch requestResponse.requestStatus {
-                case .success(let data):
-                    let image = UIImage(data: data) ?? UIImage()
-                    newImage = image
-                    completion(true)
-                case .failure(let error):
-                    print(error)
-                    newImage = nil
-                    completion(false)
-                }
-            case ResponseStatusCode.badRequest.rawValue:
-                print("Bad Access")
-            case ResponseStatusCode.serverError.rawValue:
-                print("Server Error")
-            case ResponseStatusCode.tooManyRequests.rawValue:
-                print("Too many requests received. Try after some time")
-            case ResponseStatusCode.unauthorised.rawValue:
-                print("Unauthorised")
-            default:
-                print("Error")
-            }
-        }
-        return newImage
     }
     
     func setImageArray() -> [UIImage] {
