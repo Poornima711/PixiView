@@ -16,7 +16,9 @@ class PhotoCell: UICollectionViewCell {
         //
     }
     
-    func setDataToCell(index: Int,photoArray: [UIImage]) {
-        self.imageView.image = photoArray[index]
+    func setDataToCell(index: Int, photoArray: [UIImage]) {
+        if !photoArray.isEmpty {
+            self.imageView.image = photoArray[index]
+        }
     }
 }

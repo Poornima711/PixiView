@@ -19,13 +19,17 @@ class PhotoDataPresenter {
     
     func getSearchResult(searchKey: String, completion: @escaping (_ success: Bool) -> Void) {
         dataModel.callSearch(for: searchKey) { (photoData) in
-            _ = photoData?.hits.map {
-                self.dataModel.downloadImage(url: $0.previewURL) { (success) in
-                    if success {
-                        self.controller?.imgArray = self.getPhotoArray()
-                        completion(true)
-                    } else {
-                        completion(false)
+            if photoData?.hits.count == 0 {
+                self.controller?.showAlertOnNoResults()
+            } else {
+                _ = photoData?.hits.map {
+                    self.dataModel.downloadImage(url: $0.previewURL) { (success) in
+                        if success {
+                            self.controller?.imgArray = self.getPhotoArray()
+                            completion(true)
+                        } else {
+                            completion(false)
+                        }
                     }
                 }
             }
@@ -33,7 +37,8 @@ class PhotoDataPresenter {
     }
     
     func getPhotoArray() -> [UIImage] {
-        let imgArray = dataModel.setImageArray()
+        var imgArray = [UIImage]()
+        imgArray = dataModel.setImageArray()
         return imgArray
     }
 }

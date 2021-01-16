@@ -17,7 +17,7 @@ class PhotoDataModel: NSObject {
         let urlString = URLConstants.searchURL
         let inputParams: [String: AnyObject] = ["key": apiKey as AnyObject, "q": searchKey as AnyObject]
         let request = URLRequestParameters(requestURL: urlString, requestType: .get, requestParams: inputParams)
-        
+        self.photoArray.removeAll()
         ApiHandler.sharedInstance.sendRequestToServer(serviceParameters: request) { (requestResponse) in
             let statusCode = (requestResponse.response as? HTTPURLResponse)?.statusCode ?? 0
             switch statusCode {
