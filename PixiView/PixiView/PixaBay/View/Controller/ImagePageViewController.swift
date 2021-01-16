@@ -12,11 +12,7 @@ class ImagePageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "PixiView"
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -35,21 +35,30 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="mZ0-xr-xHJ"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search to find some awesome images" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pe3-uJ-bL2">
+                                <rect key="frame" x="47.5" y="436.5" width="319.5" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="29h-1b-EqS"/>
+                            <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="F4z-jz-KBE"/>
                             <constraint firstItem="LqN-Rt-PJV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IYy-Nd-SfV"/>
                             <constraint firstItem="LqN-Rt-PJV" firstAttribute="top" secondItem="0Cs-TV-VMV" secondAttribute="bottom" id="UkL-lJ-FYW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LqN-Rt-PJV" secondAttribute="trailing" id="edr-yG-hr0"/>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gwx-As-JsF"/>
+                            <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kLe-rb-FMa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LqN-Rt-PJV" secondAttribute="bottom" id="nmn-qX-06t"/>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tGb-5g-lSU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w7q-fw-4zG"/>
                     <connections>
+                        <outlet property="helpLabel" destination="pe3-uJ-bL2" id="ZUC-q4-ULD"/>
                         <outlet property="photoCollectionView" destination="LqN-Rt-PJV" id="x2o-7v-t2m"/>
                         <outlet property="searchBar" destination="0Cs-TV-VMV" id="j0i-ev-cE3"/>
                     </connections>

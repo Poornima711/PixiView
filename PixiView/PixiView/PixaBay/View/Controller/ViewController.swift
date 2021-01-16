@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var helpLabel: UILabel!
     
     var presenter: PhotoDataPresenter?
     var responseObject: PhotoResponse?
@@ -20,7 +21,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.title = "PixiView"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.presenter = PhotoDataPresenter(controller: self)
+        helpLabel.isHidden = false
         setUpCollectionView()
         setUpSearchBar()
     }
@@ -51,45 +54,14 @@ class ViewController: UIViewController {
         self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
-    func viewForIndex(index: Int) -> ImageViewController {
-        
-        let storyboard =  UIStoryboard(name: "Main", bundle: nil)
-        
-        let pageContentObj: ImageViewController = ((storyboard.instantiateViewController(withIdentifier: "ImageViewController")) as? ImageViewController)!
-        
-        pageContentObj.index = index
-        pageContentObj.url = self.responseObject?.hits[index].largeImageURL ?? ""
-        if let url = self.responseObject?.hits[index].largeImageURL {
-            self.presenter?.download(url: url, completion: { (image) in
-                pageContentObj.image = image
-                pageContentObj.setImage(image: image ?? UIImage())
-            })
-        }        
-        return pageContentObj
-    }
 }
 
 extension ViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.searchTextField.text else { return }
+        self.helpLabel.isHidden = true
         callSearchApi(query: query)
     }
     
-}
-
-extension ViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-    // MARK: - paging delegates
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        
-        guard let temp = viewController as? ImageViewController else { return UIViewController() }
-        //temp.presenter = nil
-        return temp.index >= (self.responseObject?.hits.count ?? 0 - 1) ? nil: self.viewForIndex(index: temp.index + 1)
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let temp = viewController as? ImageViewController else { return UIViewController() }
-        //temp.presenter = nil
-        return temp.index == 0 ? nil: self.viewForIndex(index: temp.index - 1)
-    }
 }
