@@ -14,10 +14,20 @@ class ViewController: UIViewController {
     
     var presenter: PhotoDataPresenter?
     var photoArray = [UIImage]()
+    var largeImages = [UIImage]()
     
     var imgArray: [UIImage] {
         get {
             return presenter?.getPhotoArray() ?? [UIImage]()
+        }
+        set {
+            self.photoArray = newValue
+        }
+    }
+    
+    var largeImgArray: [UIImage] {
+        get {
+            return presenter?.getLargeImagesArray() ?? [UIImage]()
         }
         set {
             self.photoArray = newValue
@@ -65,5 +75,8 @@ extension ViewController: UISearchBarDelegate {
         guard let query = searchBar.searchTextField.text else { return }
         self.photoArray.removeAll()
         callSearchApi(query: query)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
     }
 }

@@ -12,6 +12,7 @@ class PhotoDataModel: NSObject {
     
     private let apiKey = "19900784-4f8a196cde58034f3d5553367"
     private var photoArray: [UIImage] = []
+    private var largeImages: [UIImage] = []
     
     func callSearch(for searchKey: String, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
         let urlString = URLConstants.searchURL
@@ -80,5 +81,10 @@ class PhotoDataModel: NSObject {
     func setImageArray() -> [UIImage] {
         if photoArray.isEmpty { return [UIImage]() }
         return photoArray
+    }
+    
+    func setLargeImageArray() -> [UIImage] {
+        if largeImages.isEmpty { return [UIImage]() }
+        return largeImages
     }
 }

@@ -26,6 +26,7 @@ class PhotoDataPresenter {
                     self.dataModel.downloadImage(url: $0.previewURL) { (success) in
                         if success {
                             self.controller?.imgArray = self.getPhotoArray()
+                            self.downloadLargeImages(response: photoData)
                             completion(true)
                         } else {
                             completion(false)
@@ -36,9 +37,25 @@ class PhotoDataPresenter {
         }
     }
     
+    func downloadLargeImages(response: PhotoResponse?) {
+        _ = response?.hits.map {
+            self.dataModel.downloadImage(url: $0.largeImageURL) { (success) in
+                if success {
+                    self.controller?.largeImgArray = self.getLargeImagesArray()
+                }
+            }
+        }
+    }
+    
     func getPhotoArray() -> [UIImage] {
         var imgArray = [UIImage]()
         imgArray = dataModel.setImageArray()
+        return imgArray
+    }
+    
+    func getLargeImagesArray() -> [UIImage] {
+        var imgArray = [UIImage]()
+        imgArray = dataModel.setLargeImageArray()
         return imgArray
     }
 }

@@ -50,7 +50,7 @@ struct URLRequestParameters {
     private(set) var requestType: RequestType
     private(set) var requestParams: [String: AnyObject]?
     private(set) var requestCachingPolicy: NSURLRequest.CachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-    private(set) var requestTimeOut: TimeInterval = 15
+    private(set) var requestTimeOut: TimeInterval = 25
     private(set) var additionalHeaders: [String: String] = Dictionary() //key:value
     private(set) var tag: AnyObject?
     

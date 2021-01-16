@@ -22,6 +22,14 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "ImageCollectionViewController") as? ImageCollectionViewController else { return }
+        controller.photoArray = self.largeImgArray
+        controller.index = indexPath
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
