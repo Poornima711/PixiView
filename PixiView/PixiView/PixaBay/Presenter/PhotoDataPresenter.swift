@@ -62,6 +62,9 @@ class PhotoDataPresenter {
 //        imgArray = dataModel.setLargeImageArray()
 //        return imgArray
 //    }
+    func clearPhotoDataArray() {
+        self.photoDataObject.removeAll()
+    }
     
     func isPaginating() -> Bool {
         return dataModel.getPaginatingFlag()

@@ -15,6 +15,7 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
+        cell.innerView.addBorder(width: 1.0)
         if let url = photoDataObject?[indexPath.row].previewURL {
             cell.imageView.loadThumbnail(urlString: url)
         }

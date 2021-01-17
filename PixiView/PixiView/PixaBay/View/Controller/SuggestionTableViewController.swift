@@ -37,6 +37,7 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let searchQueryArray = DataManager.readDataFromUserDefaults(key: "queryArray") as? [String] else { return }
         searchText = searchQueryArray[indexPath.row]
+        presenter?.clearPhotoDataArray()
         page = 1
         callSearchApi(pagination: false)
         helpLabel.isHidden = true

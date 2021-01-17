@@ -13,7 +13,6 @@ class PhotoCell: UICollectionViewCell {
     @IBOutlet weak var imageView: CustomImageView!
     
     override class func awakeFromNib() {
-        //
     }
     
     func setDataToCell(index: Int, photoArray: [UIImage]) {
