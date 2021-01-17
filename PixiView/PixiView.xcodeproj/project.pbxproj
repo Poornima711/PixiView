@@ -22,6 +22,11 @@
 		1B2115DE25B341B900732633 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115DD25B341B900732633 /* ImageViewController.swift */; };
 		1B2115E125B3595500732633 /* PhotoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115E025B3595500732633 /* PhotoPageViewController.swift */; };
 		1B2115E525B3671A00732633 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115E425B3671A00732633 /* UIImage+Additions.swift */; };
+		1B2115EB25B42B8800732633 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115EA25B42B8800732633 /* DataManager.swift */; };
+		1B2115EE25B42C3D00732633 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115ED25B42C3D00732633 /* UserDefaultHandler.swift */; };
+		1B2115F325B43D1600732633 /* SuggestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115F225B43D1600732633 /* SuggestionTableViewController.swift */; };
+		1B2115F725B43D6E00732633 /* QueryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115F525B43D6E00732633 /* QueryTableViewCell.swift */; };
+		1B2115F825B43D6E00732633 /* QueryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2115F625B43D6E00732633 /* QueryTableViewCell.xib */; };
 		1B291ED725B1A62C002B6B8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B291ED625B1A62C002B6B8E /* AppDelegate.swift */; };
 		1B291ED925B1A62C002B6B8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B291ED825B1A62C002B6B8E /* SceneDelegate.swift */; };
 		1B291EDB25B1A62C002B6B8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B291EDA25B1A62C002B6B8E /* ViewController.swift */; };
@@ -46,6 +51,11 @@
 		1B2115DD25B341B900732633 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		1B2115E025B3595500732633 /* PhotoPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPageViewController.swift; sourceTree = "<group>"; };
 		1B2115E425B3671A00732633 /* UIImage+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
+		1B2115EA25B42B8800732633 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		1B2115ED25B42C3D00732633 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
+		1B2115F225B43D1600732633 /* SuggestionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewController.swift; sourceTree = "<group>"; };
+		1B2115F525B43D6E00732633 /* QueryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTableViewCell.swift; sourceTree = "<group>"; };
+		1B2115F625B43D6E00732633 /* QueryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueryTableViewCell.xib; sourceTree = "<group>"; };
 		1B291ED325B1A62C002B6B8E /* PixiView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixiView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B291ED625B1A62C002B6B8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B291ED825B1A62C002B6B8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +131,7 @@
 				1B2115E025B3595500732633 /* PhotoPageViewController.swift */,
 				1B2115D625B340DA00732633 /* ImagePageViewController.swift */,
 				1B2115DD25B341B900732633 /* ImageViewController.swift */,
+				1B2115F225B43D1600732633 /* SuggestionTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -141,6 +152,8 @@
 				1B2115B425B2032600732633 /* PhotoCell.xib */,
 				1B2115CF25B2F7A600732633 /* BigImageCell.swift */,
 				1B2115D225B2FAEE00732633 /* BigImageCell.xib */,
+				1B2115F525B43D6E00732633 /* QueryTableViewCell.swift */,
+				1B2115F625B43D6E00732633 /* QueryTableViewCell.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -151,6 +164,15 @@
 				1B2115BD25B2D0B100732633 /* PhotoDataPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1B2115F025B42C7600732633 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				1B2115EA25B42B8800732633 /* DataManager.swift */,
+				1B2115ED25B42C3D00732633 /* UserDefaultHandler.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		1B291ECA25B1A62C002B6B8E = {
@@ -172,6 +194,7 @@
 		1B291ED525B1A62C002B6B8E /* PixiView */ = {
 			isa = PBXGroup;
 			children = (
+				1B2115F025B42C7600732633 /* Storage */,
 				1B2115A525B1F1E600732633 /* Constants */,
 				1B2115A125B1F10F00732633 /* PixaBay */,
 				1B21155E25B1CF9200732633 /* Network */,
@@ -244,6 +267,7 @@
 			files = (
 				1B291EE325B1A62F002B6B8E /* LaunchScreen.storyboard in Resources */,
 				1B2115B525B2032600732633 /* PhotoCell.xib in Resources */,
+				1B2115F825B43D6E00732633 /* QueryTableViewCell.xib in Resources */,
 				1B291EE025B1A62F002B6B8E /* Assets.xcassets in Resources */,
 				1B291EDE25B1A62C002B6B8E /* Main.storyboard in Resources */,
 				1B2115D325B2FAEE00732633 /* BigImageCell.xib in Resources */,
@@ -286,11 +310,15 @@
 				1B2115BE25B2D0B100732633 /* PhotoDataPresenter.swift in Sources */,
 				1B291ED725B1A62C002B6B8E /* AppDelegate.swift in Sources */,
 				1B2115E125B3595500732633 /* PhotoPageViewController.swift in Sources */,
+				1B2115EB25B42B8800732633 /* DataManager.swift in Sources */,
 				1B2115B925B20A8A00732633 /* PhotoDataEntity.swift in Sources */,
+				1B2115F325B43D1600732633 /* SuggestionTableViewController.swift in Sources */,
 				1B2115A725B1F1F600732633 /* URLConstants.swift in Sources */,
 				1B2115DE25B341B900732633 /* ImageViewController.swift in Sources */,
 				1B21159F25B1D3DA00732633 /* URLParameters.swift in Sources */,
 				1B2115E525B3671A00732633 /* UIImage+Additions.swift in Sources */,
+				1B2115F725B43D6E00732633 /* QueryTableViewCell.swift in Sources */,
+				1B2115EE25B42C3D00732633 /* UserDefaultHandler.swift in Sources */,
 				1B291ED925B1A62C002B6B8E /* SceneDelegate.swift in Sources */,
 				1B21156025B1CFB700732633 /* ApiHandler.swift in Sources */,
 			);

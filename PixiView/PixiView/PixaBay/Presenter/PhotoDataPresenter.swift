@@ -21,7 +21,7 @@ class PhotoDataPresenter {
     func getSearchResult(searchKey: String, pageNumber: Int, completion: @escaping (_ success: Bool) -> Void) {
         dataModel.callSearch(for: searchKey, page: "\(pageNumber)") { (photoData) in
             if photoData?.hits.count == 0 {
-                self.controller?.showAlertOnNoResults()
+                //self.controller?.showAlertOnNoResults()
                 completion(false)
             } else {
                 self.responseObject = photoData

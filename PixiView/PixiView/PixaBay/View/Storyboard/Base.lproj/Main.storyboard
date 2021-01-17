@@ -41,19 +41,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="det-m5-yAC">
+                                <rect key="frame" x="0.0" y="144" width="414" height="608"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="1uB-fb-Nf9"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Kjq-dr-TNe"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="vBs-E5-BQE"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="29h-1b-EqS"/>
                             <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="F4z-jz-KBE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="det-m5-yAC" secondAttribute="trailing" id="Ffy-C3-E11"/>
                             <constraint firstItem="LqN-Rt-PJV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IYy-Nd-SfV"/>
+                            <constraint firstItem="det-m5-yAC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TmC-YC-yJW"/>
                             <constraint firstItem="LqN-Rt-PJV" firstAttribute="top" secondItem="0Cs-TV-VMV" secondAttribute="bottom" id="UkL-lJ-FYW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LqN-Rt-PJV" secondAttribute="trailing" id="edr-yG-hr0"/>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gwx-As-JsF"/>
                             <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kLe-rb-FMa"/>
+                            <constraint firstItem="det-m5-yAC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kY3-cU-XlR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LqN-Rt-PJV" secondAttribute="bottom" id="nmn-qX-06t"/>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tGb-5g-lSU"/>
+                            <constraint firstItem="det-m5-yAC" firstAttribute="top" secondItem="0Cs-TV-VMV" secondAttribute="bottom" id="tn0-Dc-wTV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w7q-fw-4zG"/>
@@ -61,6 +76,8 @@
                         <outlet property="helpLabel" destination="pe3-uJ-bL2" id="ZUC-q4-ULD"/>
                         <outlet property="photoCollectionView" destination="LqN-Rt-PJV" id="x2o-7v-t2m"/>
                         <outlet property="searchBar" destination="0Cs-TV-VMV" id="j0i-ev-cE3"/>
+                        <outlet property="suggestionTableView" destination="det-m5-yAC" id="xIL-2u-MOp"/>
+                        <outlet property="tableHeight" destination="1uB-fb-Nf9" id="bXg-l5-SZu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

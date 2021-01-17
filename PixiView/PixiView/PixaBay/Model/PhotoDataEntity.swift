@@ -22,12 +22,7 @@ struct PhotoResponse: Decodable {
         let container = try decoder.container(keyedBy: PhotoResponseKeys.self)
         total = try container.decodeIfPresent(Int.self, forKey: .total) ?? 0
         totalHits = try container.decodeIfPresent(Int.self, forKey: .totalHits) ?? 0
-        if let list = try container.decodeIfPresent([PhotoData].self, forKey: .hits) {
-            list.forEach({
-                self.hits.append($0)
-            })
-            
-        }
+        hits = try container.decodeIfPresent([PhotoData].self, forKey: .hits) ?? [PhotoData]()
     }
 }
 

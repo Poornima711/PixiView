@@ -16,26 +16,20 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
         if let url = responseObject?.hits[indexPath.row].previewURL {
-            self.presenter?.download(url: url) { (image) in
-                cell.setImage(img: image ?? UIImage())
-            }
+            cell.imageView.loadThumbnail(urlString: url)
         }
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        if indexPath.row == (self.responseObject?.hits.count ?? 0) - 1 {  //numberofitem count
-//            page += 1
-//            guard let text = searchBar.text else { return }
-//            self.responseObject = nil
-//            callSearchApi(query: text, pageNumber: page)
-//        }
-//    }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == collectionView.numberOfItems(inSection: indexPath.section) - 1 {
+            updateNextSet()
+        }
+    }
+
+    func updateNextSet() {
         page += 1
-        guard let text = searchBar.text else { return }
-        callSearchApi(query: text, pageNumber: page)
+        callSearchApi()
     }
 }
 
