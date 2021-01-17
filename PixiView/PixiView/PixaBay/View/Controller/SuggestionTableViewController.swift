@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension ViewController: UITableViewDataSource {
+extension PhotoViewController: UITableViewDataSource {
     
     func setUpTableView() {
         suggestionTableView.isHidden = true
@@ -32,7 +32,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension PhotoViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let searchQueryArray = DataManager.readDataFromUserDefaults(key: "queryArray") as? [String] else { return }

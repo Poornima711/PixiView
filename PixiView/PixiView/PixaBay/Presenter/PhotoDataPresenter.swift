@@ -11,12 +11,12 @@ import UIKit
 class PhotoDataPresenter {
     
     private let dataModel = PhotoDataModel()
-    private var controller: ViewController?
+    private var controller: PhotoViewController?
     private var responseObject: PhotoResponse?
     private var photoDataObject: [PhotoData] = []
     private var photoArray: [UIImage]?
     
-    init(controller: ViewController) {
+    init(controller: PhotoViewController) {
         self.controller = controller
     }
     

@@ -9,10 +9,8 @@ import UIKit
 
 class ImageViewController: UIViewController {
 
-    @IBOutlet var imageView: UIImageView!
-    
-    //@IBOutlet weak var imageViewHeight: NSLayoutConstraint!
-    //@IBOutlet weak var imageViewTop: NSLayoutConstraint!
+    @IBOutlet var imgView: CustomImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //variable declarations
     var index: Int = 0
@@ -27,7 +25,16 @@ class ImageViewController: UIViewController {
     }
     
     func setImage(image: UIImage) {
-        self.imageView.image = image
+        self.imgView.image = image
     }
     
+    func startLoader() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func stopLoader() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+    }
 }

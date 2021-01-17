@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension ViewController: UICollectionViewDataSource {
+extension PhotoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photoDataObject?.count ?? 0
     }
@@ -17,7 +17,11 @@ extension ViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
         cell.innerView.addBorder(width: 1.0)
         if let url = photoDataObject?[indexPath.row].previewURL {
-            cell.imageView.loadThumbnail(urlString: url)
+            cell.imageView.loadThumbnail(urlString: url) { success in
+                if success {
+                    print("Succes")
+                }
+            }
         }
         return cell
     }
@@ -39,10 +43,10 @@ extension ViewController: UICollectionViewDataSource {
     
 }
 
-extension ViewController: UICollectionViewDelegate {
+extension PhotoViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard = UIStoryboard(name: "PixiView", bundle: nil)
         self.pageViewController = storyBoard.instantiateViewController(withIdentifier: "ImagePageViewController" ) as? ImagePageViewController
         
         self.pageViewController?.dataSource = self
@@ -53,7 +57,14 @@ extension ViewController: UICollectionViewDelegate {
         
         let startingViewController: ImageViewController! = self.viewForIndex(index: indexPath.row)
         startingViewController.view.frame = CGRect(x: 0, y: 0, width: controller.view.frame.width, height: controller.view.frame.height)
-        
+        startingViewController.startLoader()
+        if let url = photoDataObject?[indexPath.row].largeImageURL {
+            startingViewController.imgView.loadThumbnail(urlString: url) { success in
+                if success {
+                    startingViewController.stopLoader()
+                }
+            }
+        }
         let viewControllers: NSArray = [startingViewController as Any]
         self.pageViewController?.setViewControllers(viewControllers as? [UIViewController], direction: UIPageViewController.NavigationDirection.forward, animated: true, completion: nil)
         
@@ -62,13 +73,13 @@ extension ViewController: UICollectionViewDelegate {
         }
         
         self.navigationController?.pushViewController(controller, animated: true)
-     
+        
         collectionView.contentInsetAdjustmentBehavior = .never
     }
     
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension PhotoViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: photoCollectionView.frame.size.width/2.5, height: photoCollectionView.frame.size.width/2.5)

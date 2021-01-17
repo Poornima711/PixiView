@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PhotoViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var photoCollectionView: UICollectionView!
@@ -79,9 +79,9 @@ class ViewController: UIViewController {
             if !queryArray.contains(searchText) {
                 queryArray.append(searchText)
             }
-            ViewController.searchQueryArray = queryArray
+            PhotoViewController.searchQueryArray = queryArray
         }
-        DataManager.writeDataToUserDefaults(data: ViewController.searchQueryArray as AnyObject, key: "queryArray")
+        DataManager.writeDataToUserDefaults(data: PhotoViewController.searchQueryArray as AnyObject, key: "queryArray")
         updateQueryArray()
     }
     
@@ -91,14 +91,14 @@ class ViewController: UIViewController {
                 for index in 0...queryArray.count - 10 {
                     queryArray.remove(at: index)
                 }
-                ViewController.searchQueryArray = queryArray
+                PhotoViewController.searchQueryArray = queryArray
             }
         }
-        DataManager.writeDataToUserDefaults(data: ViewController.searchQueryArray as AnyObject, key: "queryArray")
+        DataManager.writeDataToUserDefaults(data: PhotoViewController.searchQueryArray as AnyObject, key: "queryArray")
     }
 }
 
-extension ViewController: UISearchBarDelegate {
+extension PhotoViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.searchTextField.text else { return }

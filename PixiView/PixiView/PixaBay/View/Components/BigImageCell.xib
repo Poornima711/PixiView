@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ea1-mM-cDM">
                         <rect key="frame" x="0.0" y="0.0" width="173" height="277"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Ly-OW-Lar">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Ly-OW-Lar" customClass="CustomImageView" customModule="PixiView" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="173" height="277"/>
                             </imageView>
                         </subviews>
@@ -42,7 +42,7 @@
             </collectionViewCellContentView>
             <size key="customSize" width="173" height="277"/>
             <connections>
-                <outlet property="imgView" destination="8Ly-OW-Lar" id="Ub9-fq-62L"/>
+                <outlet property="imgView" destination="8Ly-OW-Lar" id="FoE-lh-8uO"/>
                 <outlet property="innerView" destination="ea1-mM-cDM" id="qoS-Iu-nxc"/>
             </connections>
             <point key="canvasLocation" x="236.95652173913047" y="130.91517857142856"/>

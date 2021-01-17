@@ -14,7 +14,7 @@ class CustomImageView: UIImageView {
     
     var imageUrlString: String?
 
-    func loadThumbnail(urlString: String) {
+    func loadThumbnail(urlString: String, completion: @escaping (_ success: Bool) -> Void) {
         
         imageUrlString = urlString
         
@@ -34,9 +34,11 @@ class CustomImageView: UIImageView {
                         guard let imageToCache = UIImage(data: data) else { return }
                         self.storeInCache(imageToCache: imageToCache, urlString: urlString)
                     }
+                    completion(true)
                 case .failure(let error):
                     print(error)
                     self.image = UIImage(named: "noImage")
+                    completion(false)
                 }
             case ResponseStatusCode.badRequest.rawValue:
                 print("Bad Access")

@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-extension ViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+extension PhotoViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     func viewForIndex(index: Int) -> ImageViewController {
         
-        let storyboard =  UIStoryboard(name: "Main", bundle: nil)
+        let storyboard =  UIStoryboard(name: "PixiView", bundle: nil)
         
         let pageContentObj: ImageViewController = ((storyboard.instantiateViewController(withIdentifier: "ImageViewController")) as? ImageViewController)!
         
@@ -20,8 +20,12 @@ extension ViewController: UIPageViewControllerDelegate, UIPageViewControllerData
         pageContentObj.url = self.photoDataObject?[index].largeImageURL ?? ""
         if let url = self.photoDataObject?[index].largeImageURL {
             self.presenter?.download(url: url, completion: { (image) in
-                pageContentObj.image = image
-                pageContentObj.setImage(image: image ?? UIImage())
+                DispatchQueue.main.async {
+                    pageContentObj.startLoader()
+                    pageContentObj.image = image
+                    pageContentObj.setImage(image: image ?? UIImage())
+                    pageContentObj.stopLoader()
+                }
             })
         }
         return pageContentObj
