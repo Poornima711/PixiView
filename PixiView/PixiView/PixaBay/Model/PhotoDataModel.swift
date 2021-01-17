@@ -13,13 +13,17 @@ class PhotoDataModel: NSObject {
     private let apiKey = "19900784-4f8a196cde58034f3d5553367"
     private var photoArray: [UIImage] = []
     private var largeImages: [UIImage] = []
+    var isPaginating = false
     
-    func callSearch(for searchKey: String, page: String, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
+    func callSearch(for searchKey: String, page: String, pagination: Bool, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
         let urlString = URLConstants.searchURL
         let inputParams: [String: AnyObject] = ["key": apiKey as AnyObject, "q": searchKey as AnyObject, "image_type": "photo" as AnyObject, "page": page as AnyObject]
         let request = URLRequestParameters(requestURL: urlString, requestType: .get, requestParams: inputParams)
         self.photoArray.removeAll()
         self.largeImages.removeAll()
+        if pagination {
+            self.isPaginating = true
+        }
         ApiHandler.sharedInstance.sendRequestToServer(serviceParameters: request) { (requestResponse) in
             let statusCode = (requestResponse.response as? HTTPURLResponse)?.statusCode ?? 0
             switch statusCode {
@@ -29,9 +33,11 @@ class PhotoDataModel: NSObject {
                     do {
                         let jsonData = try JSONDecoder().decode(PhotoResponse.self, from: data)
                         completion(jsonData)
+                        self.isPaginating = false
                         print(jsonData)
                     } catch {
                        print("Could not decode the data")
+                        self.isPaginating = false
                     }
                 case .failure(let error):
                     print(error)
@@ -85,5 +91,9 @@ class PhotoDataModel: NSObject {
     func setLargeImageArray() -> [UIImage] {
         if largeImages.isEmpty { return [UIImage]() }
         return largeImages
+    }
+    
+    func getPaginatingFlag() -> Bool {
+        return isPaginating
     }
 }

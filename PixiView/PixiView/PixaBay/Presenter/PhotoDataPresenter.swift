@@ -18,8 +18,8 @@ class PhotoDataPresenter {
         self.controller = controller
     }
     
-    func getSearchResult(searchKey: String, pageNumber: Int, completion: @escaping (_ success: Bool) -> Void) {
-        dataModel.callSearch(for: searchKey, page: "\(pageNumber)") { (photoData) in
+    func getSearchResult(searchKey: String, pageNumber: Int, pagination: Bool, completion: @escaping (_ success: Bool) -> Void) {
+        dataModel.callSearch(for: searchKey, page: "\(pageNumber)", pagination: pagination) { (photoData) in
             if photoData?.hits.count == 0 {
                 //self.controller?.showAlertOnNoResults()
                 completion(false)
@@ -53,5 +53,9 @@ class PhotoDataPresenter {
         var imgArray = [UIImage]()
         imgArray = dataModel.setLargeImageArray()
         return imgArray
+    }
+    
+    func isPaginating() -> Bool {
+        return dataModel.getPaginatingFlag()
     }
 }

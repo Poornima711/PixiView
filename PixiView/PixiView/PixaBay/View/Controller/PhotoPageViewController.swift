@@ -31,13 +31,11 @@ extension ViewController: UIPageViewControllerDelegate, UIPageViewControllerData
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         guard let temp = viewController as? ImageViewController else { return UIViewController() }
-        //temp.presenter = nil
         return temp.index >= (self.responseObject?.hits.count ?? 0 - 1) ? nil: self.viewForIndex(index: temp.index + 1)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let temp = viewController as? ImageViewController else { return UIViewController() }
-        //temp.presenter = nil
         return temp.index == 0 ? nil: self.viewForIndex(index: temp.index - 1)
     }
 }

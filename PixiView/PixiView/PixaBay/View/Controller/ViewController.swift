@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        hideTable()
+        suggestionTableView.isHidden = true
     }
     
     func setUpSearchBar() {
@@ -50,8 +50,8 @@ class ViewController: UIViewController {
         photoCollectionView.register(UINib(nibName: "PhotoCell", bundle: nil), forCellWithReuseIdentifier: "PhotoCell")
     }
     
-    func callSearchApi() {
-        presenter?.getSearchResult(searchKey: searchText, pageNumber: page) { (success)  in
+    func callSearchApi(pagination: Bool) {
+        presenter?.getSearchResult(searchKey: searchText, pageNumber: page, pagination: pagination) { (success)  in
             if success {
                 self.responseObject = self.presenter?.getResponseObject()
                 self.totalImages = self.responseObject?.totalHits
@@ -80,6 +80,7 @@ class ViewController: UIViewController {
             ViewController.searchQueryArray = queryArray
         }
         DataManager.writeDataToUserDefaults(data: ViewController.searchQueryArray as AnyObject, key: "queryArray")
+        updateQueryArray()
     }
 }
 
@@ -91,7 +92,7 @@ extension ViewController: UISearchBarDelegate {
         self.suggestionTableView.isHidden = true
         searchText = query
         page = 1
-        callSearchApi()
+        callSearchApi(pagination: false)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

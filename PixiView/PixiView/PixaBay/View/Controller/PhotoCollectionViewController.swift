@@ -21,15 +21,25 @@ extension ViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == collectionView.numberOfItems(inSection: indexPath.section) - 1 {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > (suggestionTableView.contentSize.height-100 - scrollView.frame.size.height) {
             updateNextSet()
         }
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        if indexPath.row == collectionView.numberOfItems(inSection: indexPath.section) - 1 {
+//            updateNextSet()
+//        }
+//    }
 
     func updateNextSet() {
         page += 1
-        callSearchApi()
+        guard let isPaginating = presenter?.isPaginating(), !isPaginating else {
+            return
+        }
+        callSearchApi(pagination: true)
     }
 }
 

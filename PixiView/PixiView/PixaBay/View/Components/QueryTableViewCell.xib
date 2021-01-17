@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,23 +18,41 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPs-x4-Y2H">
-                        <rect key="frame" x="20" y="5" width="42" height="34"/>
+                        <rect key="frame" x="36" y="5" width="41.5" height="34"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAP-xr-1Ao">
+                        <rect key="frame" x="0.0" y="43" width="320" height="1"/>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="QNG-e9-KTS"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="LAP-xr-1Ao" secondAttribute="bottom" id="EN5-Ex-0ok"/>
                     <constraint firstItem="MPs-x4-Y2H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Ezl-et-erR"/>
-                    <constraint firstItem="MPs-x4-Y2H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="NL8-uC-HxO"/>
+                    <constraint firstItem="LAP-xr-1Ao" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Q5g-We-J5O"/>
                     <constraint firstAttribute="bottom" secondItem="MPs-x4-Y2H" secondAttribute="bottom" constant="5" id="WD9-0x-XY1"/>
+                    <constraint firstAttribute="trailing" secondItem="LAP-xr-1Ao" secondAttribute="trailing" id="Y3f-Tq-pg9"/>
+                    <constraint firstItem="MPs-x4-Y2H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="cfd-G0-vzl"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="queryString" destination="MPs-x4-Y2H" id="YuQ-xt-AjV"/>
             </connections>
-            <point key="canvasLocation" x="138" y="122"/>
+            <point key="canvasLocation" x="137.68115942028987" y="121.875"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

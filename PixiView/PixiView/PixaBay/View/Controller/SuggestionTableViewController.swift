@@ -15,7 +15,8 @@ extension ViewController: UITableViewDataSource {
         suggestionTableView.dataSource = self
         suggestionTableView.delegate = self
         suggestionTableView.backgroundColor = .white
-        tableHeight.constant = suggestionTableView.contentSize.height/2
+        suggestionTableView.separatorStyle = .none
+        tableHeight.constant = suggestionTableView.contentSize.height
     }
     
     func hideTable() {
@@ -41,7 +42,6 @@ extension ViewController: UITableViewDataSource {
         cell.queryString.text = searchQueryArray[indexPath.row]
         return cell
     }
-    
 }
 
 extension ViewController: UITableViewDelegate {
@@ -50,10 +50,10 @@ extension ViewController: UITableViewDelegate {
         guard let searchQueryArray = DataManager.readDataFromUserDefaults(key: "queryArray") as? [String] else { return }
         searchText = searchQueryArray[indexPath.row]
         page = 1
-        callSearchApi()
+        callSearchApi(pagination: false)
         helpLabel.isHidden = true
-        searchBar.text = ""
-        hideTable()
+        suggestionTableView.isHidden = true
+        searchBar.text = searchText
     }
     
 }
