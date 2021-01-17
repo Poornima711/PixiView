@@ -21,13 +21,27 @@ extension ViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let position = scrollView.contentOffset.y
+//        //(suggestionTableView.contentSize.height - scrollView.frame.size.height)
+//        if position > (scrollView.frame.size.height - suggestionTableView.contentSize.height) {
+//            updateNextSet()
+//        }
+//    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let position = scrollView.contentOffset.y
         //(suggestionTableView.contentSize.height - scrollView.frame.size.height)
-        if position > (scrollView.frame.size.height - suggestionTableView.contentSize.height) {
+        if position > (suggestionTableView.contentSize.height - scrollView.frame.size.height) {
             updateNextSet()
         }
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        if indexPath.row == (responseObject?.hits.count ?? 0)/2 && responseObject?.hits.count ?? 0 < totalImages ?? 0 {
+//            updateNextSet()
+//        }
+//    }
 
     func updateNextSet() {
         page += 1

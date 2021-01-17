@@ -10,9 +10,13 @@ import UIKit
 
 let imageCache = NSCache<AnyObject, AnyObject>()
 
-extension UIImageView {
+class CustomImageView: UIImageView {
+    
+    var imageUrlString: String?
 
     func loadThumbnail(urlString: String) {
+        
+        imageUrlString = urlString
         
         image = nil
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) {
@@ -27,9 +31,8 @@ extension UIImageView {
                 switch response.requestStatus {
                 case .success(let data):
                     DispatchQueue.main.async {
-                    guard let imageToCache = UIImage(data: data) else { return }
-                    imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
-                    self.image = imageToCache
+                        guard let imageToCache = UIImage(data: data) else { return }
+                        self.storeInCache(imageToCache: imageToCache, urlString: urlString)
                     }
                 case .failure(let error):
                     print(error)
@@ -47,5 +50,12 @@ extension UIImageView {
                 print("Error")
             }
         }
+    }
+    
+    func storeInCache(imageToCache: UIImage, urlString: String) {
+        if self.imageUrlString == urlString {
+            self.image = imageToCache
+        }
+        imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
     }
 }
