@@ -10,24 +10,16 @@ import UIKit
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return responseObject?.hits.count ?? 0
+        return photoDataObject?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
-        if let url = responseObject?.hits[indexPath.row].previewURL {
+        if let url = photoDataObject?[indexPath.row].previewURL {
             cell.imageView.loadThumbnail(urlString: url)
         }
         return cell
     }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let position = scrollView.contentOffset.y
-//        //(suggestionTableView.contentSize.height - scrollView.frame.size.height)
-//        if position > (scrollView.frame.size.height - suggestionTableView.contentSize.height) {
-//            updateNextSet()
-//        }
-//    }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let position = scrollView.contentOffset.y
@@ -36,12 +28,6 @@ extension ViewController: UICollectionViewDataSource {
             updateNextSet()
         }
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        if indexPath.row == (responseObject?.hits.count ?? 0)/2 && responseObject?.hits.count ?? 0 < totalImages ?? 0 {
-//            updateNextSet()
-//        }
-//    }
 
     func updateNextSet() {
         page += 1

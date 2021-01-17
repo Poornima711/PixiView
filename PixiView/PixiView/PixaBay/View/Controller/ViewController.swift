@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     var presenter: PhotoDataPresenter?
     var responseObject: PhotoResponse?
+    var photoDataObject: [PhotoData]?
     var pageViewController: UIPageViewController?
     var totalImages: Int?
     var page = 1
@@ -54,6 +55,7 @@ class ViewController: UIViewController {
         presenter?.getSearchResult(searchKey: searchText, pageNumber: page, pagination: pagination) { (success)  in
             if success {
                 self.responseObject = self.presenter?.getResponseObject()
+                self.photoDataObject = self.presenter?.getPhotoDataObject()
                 self.totalImages = self.responseObject?.totalHits
                 self.fillSearchArray()
                 self.photoCollectionView.reloadData()
@@ -111,6 +113,7 @@ extension ViewController: UISearchBarDelegate {
         if searchBar.text?.isEmpty ?? false {
             helpLabel.isHidden = false
             responseObject = nil
+            photoDataObject = nil
             self.suggestionTableView.isHidden = true
             photoCollectionView.reloadData()
         } else {

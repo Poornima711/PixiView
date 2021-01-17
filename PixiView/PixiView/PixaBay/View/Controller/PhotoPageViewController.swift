@@ -17,8 +17,8 @@ extension ViewController: UIPageViewControllerDelegate, UIPageViewControllerData
         let pageContentObj: ImageViewController = ((storyboard.instantiateViewController(withIdentifier: "ImageViewController")) as? ImageViewController)!
         
         pageContentObj.index = index
-        pageContentObj.url = self.responseObject?.hits[index].largeImageURL ?? ""
-        if let url = self.responseObject?.hits[index].largeImageURL {
+        pageContentObj.url = self.photoDataObject?[index].largeImageURL ?? ""
+        if let url = self.photoDataObject?[index].largeImageURL {
             self.presenter?.download(url: url, completion: { (image) in
                 pageContentObj.image = image
                 pageContentObj.setImage(image: image ?? UIImage())
@@ -31,7 +31,7 @@ extension ViewController: UIPageViewControllerDelegate, UIPageViewControllerData
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         guard let temp = viewController as? ImageViewController else { return UIViewController() }
-        return temp.index >= (self.responseObject?.hits.count ?? 0 - 1) ? nil: self.viewForIndex(index: temp.index + 1)
+        return temp.index >= (self.photoDataObject?.count ?? 0 - 1) ? nil: self.viewForIndex(index: temp.index + 1)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

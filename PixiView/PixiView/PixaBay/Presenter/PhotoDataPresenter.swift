@@ -13,6 +13,7 @@ class PhotoDataPresenter {
     private let dataModel = PhotoDataModel()
     private var controller: ViewController?
     private var responseObject: PhotoResponse?
+    private var photoDataObject: [PhotoData] = []
     private var photoArray: [UIImage]?
     
     init(controller: ViewController) {
@@ -26,6 +27,8 @@ class PhotoDataPresenter {
                 completion(false)
             } else {
                 self.responseObject = photoData
+                self.photoDataObject.append(contentsOf: photoData?.hits ?? [])
+                //self.photoDataObject?.append(contentsOf: photoData?.hits ?? [])
                 completion(true)
             }
         }
@@ -42,6 +45,10 @@ class PhotoDataPresenter {
     
     func getResponseObject() -> PhotoResponse? {
         return self.responseObject
+    }
+    
+    func getPhotoDataObject() -> [PhotoData]? {
+        return self.photoDataObject
     }
     
 //    func getPhotoArray() -> [UIImage] {
