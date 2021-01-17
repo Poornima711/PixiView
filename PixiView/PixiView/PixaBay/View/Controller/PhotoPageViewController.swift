@@ -31,7 +31,11 @@ extension ViewController: UIPageViewControllerDelegate, UIPageViewControllerData
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         guard let temp = viewController as? ImageViewController else { return UIViewController() }
-        return temp.index >= (self.photoDataObject?.count ?? 0 - 1) ? nil: self.viewForIndex(index: temp.index + 1)
+        var index = temp.index + 1
+        if index == photoDataObject?.count ?? 0 - 1 {
+            index = 0
+        }
+        return index >= (self.photoDataObject?.count ?? 0 - 1) ? nil: self.viewForIndex(index: index)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

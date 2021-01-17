@@ -23,7 +23,6 @@ extension ViewController: UICollectionViewDataSource {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let position = scrollView.contentOffset.y
-        //(suggestionTableView.contentSize.height - scrollView.frame.size.height)
         if position > (suggestionTableView.contentSize.height - scrollView.frame.size.height) {
             updateNextSet()
         }
