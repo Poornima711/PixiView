@@ -13,6 +13,7 @@ class PhotoDataPresenter {
     private let dataModel = PhotoDataModel()
     private var controller: ViewController?
     private var responseObject: PhotoResponse?
+    private var photoArray: [UIImage]?
     
     init(controller: ViewController) {
         self.controller = controller
@@ -43,19 +44,23 @@ class PhotoDataPresenter {
         return self.responseObject
     }
     
-    func getPhotoArray() -> [UIImage] {
-        var imgArray = [UIImage]()
-        imgArray = dataModel.setImageArray()
-        return imgArray
-    }
-    
-    func getLargeImagesArray() -> [UIImage] {
-        var imgArray = [UIImage]()
-        imgArray = dataModel.setLargeImageArray()
-        return imgArray
-    }
+//    func getPhotoArray() -> [UIImage] {
+//        var imgArray = [UIImage]()
+//        imgArray = dataModel.setImageArray()
+//        return imgArray
+//    }
+//
+//    func getLargeImagesArray() -> [UIImage] {
+//        var imgArray = [UIImage]()
+//        imgArray = dataModel.setLargeImageArray()
+//        return imgArray
+//    }
     
     func isPaginating() -> Bool {
         return dataModel.getPaginatingFlag()
+    }
+    
+    func createThumbnailImages(image: UIImage) {
+        self.photoArray?.append(image)
     }
 }

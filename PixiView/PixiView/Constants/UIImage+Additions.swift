@@ -26,9 +26,11 @@ extension UIImageView {
             case ResponseStatusCode.success.rawValue:
                 switch response.requestStatus {
                 case .success(let data):
+                    DispatchQueue.main.async {
                     guard let imageToCache = UIImage(data: data) else { return }
                     imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
-                    self.image = UIImage(data: data)
+                    self.image = imageToCache
+                    }
                 case .failure(let error):
                     print(error)
                     self.image = UIImage(named: "noImage")

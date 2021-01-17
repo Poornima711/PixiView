@@ -23,16 +23,11 @@ extension ViewController: UICollectionViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
-        if position > (suggestionTableView.contentSize.height-100 - scrollView.frame.size.height) {
+        //(suggestionTableView.contentSize.height - scrollView.frame.size.height)
+        if position > (scrollView.frame.size.height - suggestionTableView.contentSize.height) {
             updateNextSet()
         }
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        if indexPath.row == collectionView.numberOfItems(inSection: indexPath.section) - 1 {
-//            updateNextSet()
-//        }
-//    }
 
     func updateNextSet() {
         page += 1
@@ -41,6 +36,7 @@ extension ViewController: UICollectionViewDataSource {
         }
         callSearchApi(pagination: true)
     }
+    
 }
 
 extension ViewController: UICollectionViewDelegate {
