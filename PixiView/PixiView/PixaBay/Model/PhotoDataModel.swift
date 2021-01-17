@@ -10,17 +10,25 @@ import UIKit
 
 class PhotoDataModel: NSObject {
     
-    private let apiKey = "19900784-4f8a196cde58034f3d5553367"
-    private var photoArray: [UIImage] = []
-    private var largeImages: [UIImage] = []
+    //private let apiKey = "19900784-4f8a196cde58034f3d5553367"
+    
+    private var apiKey: String {
+        guard let filePath = Bundle.main.path(forResource: "Pixabay-Info", ofType: "plist") else {
+          fatalError("Couldn't find file 'Pixabay-Info.plist'.")
+        }
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "API_KEY") as? String else {
+          fatalError("Couldn't find key 'API_KEY' in 'Pixabay-Info.plist'.")
+        }
+        return value
+    }
+    
     var isPaginating = false
     
     func callSearch(for searchKey: String, page: String, pagination: Bool, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
         let urlString = URLConstants.searchURL
         let inputParams: [String: AnyObject] = ["key": apiKey as AnyObject, "q": searchKey as AnyObject, "image_type": "photo" as AnyObject, "page": page as AnyObject]
         let request = URLRequestParameters(requestURL: urlString, requestType: .get, requestParams: inputParams)
-        self.photoArray.removeAll()
-        self.largeImages.removeAll()
         if pagination {
             self.isPaginating = true
         }
@@ -81,16 +89,6 @@ class PhotoDataModel: NSObject {
                 print("Error")
             }
         }
-    }
-    
-    func setImageArray() -> [UIImage] {
-        if photoArray.isEmpty { return [UIImage]() }
-        return photoArray
-    }
-    
-    func setLargeImageArray() -> [UIImage] {
-        if largeImages.isEmpty { return [UIImage]() }
-        return largeImages
     }
     
     func getPaginatingFlag() -> Bool {

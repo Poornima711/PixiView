@@ -12,16 +12,11 @@ class PhotoCell: UICollectionViewCell {
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var imageView: CustomImageView!
     
-    override class func awakeFromNib() {
-    }
+    @IBInspectable var borderWidth: CGFloat = 1
+    @IBInspectable var borderColor: UIColor = .lightGray
     
-    func setDataToCell(index: Int, photoArray: [UIImage]) {
-        if !photoArray.isEmpty {
-            self.imageView.image = photoArray[index]
-        }
-    }
-    
-    func setImage(img: UIImage) {
-        self.imageView.image = img
+    func setUIForCell() {
+        self.innerView.layer.borderWidth = borderWidth
+        self.innerView.layer.borderColor = borderColor.cgColor
     }
 }

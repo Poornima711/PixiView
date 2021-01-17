@@ -18,16 +18,6 @@ extension PhotoViewController: UIPageViewControllerDelegate, UIPageViewControlle
         
         pageContentObj.index = index
         pageContentObj.url = self.photoDataObject?[index].largeImageURL ?? ""
-        if let url = self.photoDataObject?[index].largeImageURL {
-            self.presenter?.download(url: url, completion: { (image) in
-                DispatchQueue.main.async {
-                    pageContentObj.startLoader()
-                    pageContentObj.image = image
-                    pageContentObj.setImage(image: image ?? UIImage())
-                    pageContentObj.stopLoader()
-                }
-            })
-        }
         return pageContentObj
     }
     

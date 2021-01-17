@@ -17,13 +17,12 @@ class CustomImageView: UIImageView {
     func loadThumbnail(urlString: String, completion: @escaping (_ success: Bool) -> Void) {
         
         imageUrlString = urlString
-        
         image = nil
+        
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) {
             image = imageFromCache as? UIImage
             return
         }
-        
         ApiHandler.sharedInstance.downloadImageFromURL(url: urlString) { (response) in
             let statusCode = (response.response as? HTTPURLResponse)?.statusCode ?? 0
             switch statusCode {

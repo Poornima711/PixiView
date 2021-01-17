@@ -15,7 +15,7 @@ extension PhotoViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
-        cell.innerView.addBorder(width: 1.0)
+        cell.setUIForCell()
         if let url = photoDataObject?[indexPath.row].previewURL {
             cell.imageView.loadThumbnail(urlString: url) { success in
                 if success {
@@ -57,13 +57,8 @@ extension PhotoViewController: UICollectionViewDelegate {
         
         let startingViewController: ImageViewController! = self.viewForIndex(index: indexPath.row)
         startingViewController.view.frame = CGRect(x: 0, y: 0, width: controller.view.frame.width, height: controller.view.frame.height)
-        startingViewController.startLoader()
         if let url = photoDataObject?[indexPath.row].largeImageURL {
-            startingViewController.imgView.loadThumbnail(urlString: url) { success in
-                if success {
-                    startingViewController.stopLoader()
-                }
-            }
+            startingViewController.url = url
         }
         let viewControllers: NSArray = [startingViewController as Any]
         self.pageViewController?.setViewControllers(viewControllers as? [UIViewController], direction: UIPageViewController.NavigationDirection.forward, animated: true, completion: nil)

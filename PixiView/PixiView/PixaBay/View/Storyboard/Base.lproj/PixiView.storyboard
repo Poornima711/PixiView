@@ -52,6 +52,14 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="vBs-E5-BQE"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Wvl-8x-wop">
+                                <rect key="frame" x="187" y="428" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="LEy-cD-Og9"/>
+                                    <constraint firstAttribute="width" constant="40" id="oeh-Kk-hAg"/>
+                                </constraints>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -60,6 +68,7 @@
                             <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="F4z-jz-KBE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="det-m5-yAC" secondAttribute="trailing" id="Ffy-C3-E11"/>
                             <constraint firstItem="LqN-Rt-PJV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IYy-Nd-SfV"/>
+                            <constraint firstItem="Wvl-8x-wop" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TJn-nc-NJo"/>
                             <constraint firstItem="det-m5-yAC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TmC-YC-yJW"/>
                             <constraint firstItem="LqN-Rt-PJV" firstAttribute="top" secondItem="0Cs-TV-VMV" secondAttribute="bottom" id="UkL-lJ-FYW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LqN-Rt-PJV" secondAttribute="trailing" id="edr-yG-hr0"/>
@@ -67,12 +76,14 @@
                             <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kLe-rb-FMa"/>
                             <constraint firstItem="det-m5-yAC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kY3-cU-XlR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LqN-Rt-PJV" secondAttribute="bottom" id="nmn-qX-06t"/>
+                            <constraint firstItem="Wvl-8x-wop" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ph1-LI-3g7"/>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tGb-5g-lSU"/>
                             <constraint firstItem="det-m5-yAC" firstAttribute="top" secondItem="0Cs-TV-VMV" secondAttribute="bottom" id="tn0-Dc-wTV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w7q-fw-4zG"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Wvl-8x-wop" id="X2I-N2-POa"/>
                         <outlet property="helpLabel" destination="pe3-uJ-bL2" id="ZUC-q4-ULD"/>
                         <outlet property="photoCollectionView" destination="LqN-Rt-PJV" id="x2o-7v-t2m"/>
                         <outlet property="searchBar" destination="0Cs-TV-VMV" id="j0i-ev-cE3"/>

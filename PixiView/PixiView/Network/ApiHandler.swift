@@ -68,7 +68,7 @@ class ApiHandler: NSObject {
     }
     
     func downloadImageFromURL(url: String, completionHandler: @escaping ((_ apiRequestResponse: ApiServiceRequestResponse<Data, ApiError>) -> Void)) {
-        
+        if url.isEmpty { return }
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
         config.urlCache = nil
@@ -121,8 +121,9 @@ extension ApiHandler: URLSessionDelegate {
         SecTrustSetPolicies(serverTrust, policies)
         
         // Evaluate server certificate
-        var result = SecTrustResultType.invalid
-        SecTrustEvaluate(serverTrust, &result)
+        let result = SecTrustResultType.invalid
+        _ = SecTrustEvaluateWithError(serverTrust, nil)
+        //SecTrustEvaluate(serverTrust, &result)
         var isServerTrusted = result == .unspecified || result == .proceed ? true : false
         
         if isServerTrusted {
@@ -134,8 +135,8 @@ extension ApiHandler: URLSessionDelegate {
             var trust: SecTrust?
             SecTrustCreateWithCertificates(cfCertificates, policy, &trust)
             
-            let pubKey = SecTrustCopyPublicKey(trust!)
-            
+            let pubKey = SecTrustCopyKey(trust!)
+            //SecTrustCopyPublicKey(trust!)
             var error: Unmanaged<CFError>?
             if let pubKeyData = SecKeyCopyExternalRepresentation(pubKey!, &error) {
                 var keyWithHeader = Data(bytes: rsa2048Asn1Header, count: rsa2048Asn1Header.count)

@@ -22,10 +22,10 @@ class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-    }
-    
-    func setImage(image: UIImage) {
-        self.imgView.image = image
+        startLoader()
+        self.imgView.loadThumbnail(urlString: url) { (_) in
+            self.stopLoader()
+        }
     }
     
     func startLoader() {

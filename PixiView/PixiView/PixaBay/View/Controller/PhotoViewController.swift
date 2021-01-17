@@ -14,6 +14,7 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var helpLabel: UILabel!
     @IBOutlet weak var suggestionTableView: UITableView!
     @IBOutlet weak var tableHeight: NSLayoutConstraint!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var presenter: PhotoDataPresenter?
     var responseObject: PhotoResponse?
@@ -52,16 +53,20 @@ class PhotoViewController: UIViewController {
     }
     
     func callSearchApi(pagination: Bool) {
-        presenter?.getSearchResult(searchKey: searchText, pageNumber: page, pagination: pagination) { (success)  in
+        self.activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        presenter?.getSearchResult(searchKey: searchText, pageNumber: page, pagination: pagination) { [weak self] (success)  in
             if success {
-                self.responseObject = self.presenter?.getResponseObject()
-                self.photoDataObject = self.presenter?.getPhotoDataObject()
-                self.totalImages = self.responseObject?.totalHits
-                self.fillSearchArray()
-                self.photoCollectionView.reloadData()
+                self?.responseObject = self?.presenter?.getResponseObject()
+                self?.photoDataObject = self?.presenter?.getPhotoDataObject()
+                self?.totalImages = self?.responseObject?.totalHits
+                self?.fillSearchArray()
+                self?.activityIndicator.stopAnimating()
+                self?.activityIndicator.isHidden = true
+                self?.photoCollectionView.reloadData()
             } else {
-                if self.page == 1 { // show error only when page = 1 (becoz in first page itself we couldnot find the data), else dont show error
-                    self.showAlertOnNoResults()
+                if self?.page == 1 { // show error only when page = 1 (becoz in first page itself we couldnot find the data), else dont show error
+                    self?.showAlertOnNoResults()
                 }
             }
         }
@@ -104,6 +109,7 @@ extension PhotoViewController: UISearchBarDelegate {
         guard let query = searchBar.searchTextField.text else { return }
         self.helpLabel.isHidden = true
         self.suggestionTableView.isHidden = true
+        presenter?.clearPhotoDataArray()
         searchText = query
         page = 1
         callSearchApi(pagination: false)
@@ -123,8 +129,6 @@ extension PhotoViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        //self.suggestionTableView.isHidden = false
-        //suggestionTableView.reloadData()
         setUpTableView()
     }
 }

@@ -21,14 +21,12 @@ class PhotoDataPresenter {
     }
     
     func getSearchResult(searchKey: String, pageNumber: Int, pagination: Bool, completion: @escaping (_ success: Bool) -> Void) {
-        dataModel.callSearch(for: searchKey, page: "\(pageNumber)", pagination: pagination) { (photoData) in
+        dataModel.callSearch(for: searchKey, page: "\(pageNumber)", pagination: pagination) { [weak self] (photoData) in
             if photoData?.hits.count == 0 {
-                //self.controller?.showAlertOnNoResults()
                 completion(false)
             } else {
-                self.responseObject = photoData
-                self.photoDataObject.append(contentsOf: photoData?.hits ?? [])
-                //self.photoDataObject?.append(contentsOf: photoData?.hits ?? [])
+                self?.responseObject = photoData
+                self?.photoDataObject.append(contentsOf: photoData?.hits ?? [])
                 completion(true)
             }
         }
@@ -51,17 +49,6 @@ class PhotoDataPresenter {
         return self.photoDataObject
     }
     
-//    func getPhotoArray() -> [UIImage] {
-//        var imgArray = [UIImage]()
-//        imgArray = dataModel.setImageArray()
-//        return imgArray
-//    }
-//
-//    func getLargeImagesArray() -> [UIImage] {
-//        var imgArray = [UIImage]()
-//        imgArray = dataModel.setLargeImageArray()
-//        return imgArray
-//    }
     func clearPhotoDataArray() {
         self.photoDataObject.removeAll()
     }
