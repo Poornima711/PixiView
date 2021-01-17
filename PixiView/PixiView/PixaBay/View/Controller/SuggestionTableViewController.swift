@@ -19,18 +19,6 @@ extension ViewController: UITableViewDataSource {
         tableHeight.constant = suggestionTableView.contentSize.height
     }
     
-    func hideTable() {
-        self.view.subviews.forEach { (view) in
-            if view.isKind(of: UITableView.self) {
-                view.isHidden = true
-            }
-        }
-    }
-    
-    func updateQueryArray() {
-        
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let searchQueryArray = DataManager.readDataFromUserDefaults(key: "queryArray") else { return 0 }
         return searchQueryArray.count

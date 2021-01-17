@@ -82,6 +82,18 @@ class ViewController: UIViewController {
         DataManager.writeDataToUserDefaults(data: ViewController.searchQueryArray as AnyObject, key: "queryArray")
         updateQueryArray()
     }
+    
+    func updateQueryArray() {
+        if var queryArray = DataManager.readDataFromUserDefaults(key: "queryArray") as? [String] {
+            if  queryArray.count > 10 {
+                for index in 0...queryArray.count - 10 {
+                    queryArray.remove(at: index)
+                }
+                ViewController.searchQueryArray = queryArray
+            }
+        }
+        DataManager.writeDataToUserDefaults(data: ViewController.searchQueryArray as AnyObject, key: "queryArray")
+    }
 }
 
 extension ViewController: UISearchBarDelegate {
