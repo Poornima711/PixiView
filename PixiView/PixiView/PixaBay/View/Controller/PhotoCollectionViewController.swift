@@ -17,6 +17,7 @@ extension PhotoViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
         cell.setUIForCell()
         if let url = photoDataObject?[indexPath.row].previewURL {
+            //download Image
             cell.imageView.loadThumbnail(urlString: url) { success in
                 if success {
                     print("Succes")
@@ -33,11 +34,19 @@ extension PhotoViewController: UICollectionViewDataSource {
         }
     }
 
+    /**
+        Calls the Search API on pagination.
+        - Call this function when pagination needed.
+    */
     func updateNextSet() {
+        //increment page count
         page += 1
+        
         guard let isPaginating = presenter?.isPaginating(), !isPaginating else {
             return
         }
+        
+        //call Search API
         callSearchApi(pagination: true)
     }
     
@@ -46,6 +55,7 @@ extension PhotoViewController: UICollectionViewDataSource {
 extension PhotoViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Redirect to DetailViewController to view full image.
         let storyBoard = UIStoryboard(name: "PixiView", bundle: nil)
         if let detail = storyBoard.instantiateViewController(withIdentifier: "DetailViewController" ) as? DetailViewController {
             detail.responseObject = responseObject

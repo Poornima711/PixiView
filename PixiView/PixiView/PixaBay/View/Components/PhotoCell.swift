@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+    Search Collection View Cell Class.
+*/
 class PhotoCell: UICollectionViewCell {
     
     @IBOutlet weak var innerView: UIView!
@@ -15,6 +18,9 @@ class PhotoCell: UICollectionViewCell {
     @IBInspectable var borderWidth: CGFloat = 1
     @IBInspectable var borderColor: UIColor = .lightGray
     
+    /**
+        Set UI for the cell.
+    */
     func setUIForCell() {
         self.innerView.layer.borderWidth = borderWidth
         self.innerView.layer.borderColor = borderColor.cgColor

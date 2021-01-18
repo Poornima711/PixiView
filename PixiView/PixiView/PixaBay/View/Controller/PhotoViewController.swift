@@ -7,6 +7,13 @@
 
 import UIKit
 
+/**
+    This class is a view controller class.
+    - Configures SearchBar and Implements UISearchBarDelegate methods
+    - Configures UICollectionView and Implements UICollectionView datasource and delegate methods
+    - Configures UITableView and Implements UITableView datasource and delegate methods
+*/
+
 class PhotoViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -43,16 +50,26 @@ class PhotoViewController: UIViewController {
         suggestionTableView.isHidden = true
     }
     
+    /**
+        Set up SearchBar.
+    */
     func setUpSearchBar() {
         searchBar.delegate = self
     }
     
+    /**
+        Set up CollectionView.
+    */
     func setUpCollectionView() {
         photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
         photoCollectionView.register(UINib(nibName: "PhotoCell", bundle: nil), forCellWithReuseIdentifier: "PhotoCell")
     }
     
+    /**
+        Call Search API.
+        - Parameter pagination: Boolean value specifies whether pagination needed or not
+    */
     func callSearchApi(pagination: Bool) {
         self.activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -73,6 +90,9 @@ class PhotoViewController: UIViewController {
         }
     }
     
+    /**
+        Show alert when no results found for the searched query.
+    */
     func showAlertOnNoResults() {
         let alert = UIAlertController(title: "Oops!", message: "We could not find what you are looking for, try searching something else.", preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)

@@ -7,6 +7,11 @@
 
 import UIKit
 //new
+/**
+    This is UIViewController Class which implements pagination methods.
+    - configures UIPageViewControllerDataSource and UIPageViewControllerDelegate methods
+
+ */
 class DetailViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
     var pageController: UIPageViewController!
@@ -25,16 +30,22 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
         pageControl.numberOfPages = photoDataObject?.count ?? 0
         setupPageController()
         
+        //get controller for the specified index
         let startingViewController: PageContentViewController! = self.viewForIndex(index: selectedPosition)
         if let url = photoDataObject?[selectedPosition].largeImageURL {
             startingViewController.url = url
         }
+        //set the total number of images for page control
         startingViewController.numberOfPages = responseObject?.totalHits ?? 0
         let viewControllers: [UIViewController] = [startingViewController]
         
+        //set controllers
         pageController.setViewControllers(viewControllers, direction: .forward, animated: false)
     }
     
+    /**
+     This method sets up PageViewController and add it to the controller as child.
+     */
     private func setupPageController() {
         self.pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         self.pageController?.dataSource = self
@@ -54,6 +65,12 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
         self.pageController?.didMove(toParent: self)
     }
     
+    /**
+        This method provides the UIViewController of specified index.
+     
+        - Parameter index: Int value of Index specifies the UIViewController to be returned
+        - Returns: PageContentViewController Object
+    */
     func viewForIndex(index: Int) -> PageContentViewController {
         
         let storyboard =  UIStoryboard(name: "PixiView", bundle: nil)
@@ -67,7 +84,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
         return pageContentObj
     }
     
-    // MARK: - paging delegates
+    // MARK: - Paging Delegates
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         guard let temp = viewController as? PageContentViewController else { return UIViewController() }

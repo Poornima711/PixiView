@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+    Search Suggesstion Table View Cell Class.
+*/
 class QueryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var queryString: UILabel!

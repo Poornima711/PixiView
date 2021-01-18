@@ -18,7 +18,6 @@
 		1B2115C225B2D87800732633 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115C125B2D87800732633 /* PhotoCollectionViewController.swift */; };
 		1B2115D025B2F7A600732633 /* BigImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115CF25B2F7A600732633 /* BigImageCell.swift */; };
 		1B2115D325B2FAEE00732633 /* BigImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2115D225B2FAEE00732633 /* BigImageCell.xib */; };
-		1B2115D725B340DA00732633 /* ImagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115D625B340DA00732633 /* ImagePageViewController.swift */; };
 		1B2115DE25B341B900732633 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115DD25B341B900732633 /* PageContentViewController.swift */; };
 		1B2115E525B3671A00732633 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115E425B3671A00732633 /* CustomImageView.swift */; };
 		1B2115EB25B42B8800732633 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2115EA25B42B8800732633 /* DataManager.swift */; };
@@ -51,7 +50,6 @@
 		1B2115C125B2D87800732633 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		1B2115CF25B2F7A600732633 /* BigImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigImageCell.swift; sourceTree = "<group>"; };
 		1B2115D225B2FAEE00732633 /* BigImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BigImageCell.xib; sourceTree = "<group>"; };
-		1B2115D625B340DA00732633 /* ImagePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageViewController.swift; sourceTree = "<group>"; };
 		1B2115DD25B341B900732633 /* PageContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		1B2115E425B3671A00732633 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		1B2115EA25B42B8800732633 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 			children = (
 				1B291EDA25B1A62C002B6B8E /* PhotoViewController.swift */,
 				1B2115C125B2D87800732633 /* PhotoCollectionViewController.swift */,
-				1B2115D625B340DA00732633 /* ImagePageViewController.swift */,
 				1B2115DD25B341B900732633 /* PageContentViewController.swift */,
 				1B2115F225B43D1600732633 /* SuggestionTableViewController.swift */,
 				1BDE70D225B5B5DF00AD0746 /* DetailViewController.swift */,
@@ -318,7 +315,6 @@
 				1B2115D025B2F7A600732633 /* BigImageCell.swift in Sources */,
 				1B2115C225B2D87800732633 /* PhotoCollectionViewController.swift in Sources */,
 				1BDE70D325B5B5DF00AD0746 /* DetailViewController.swift in Sources */,
-				1B2115D725B340DA00732633 /* ImagePageViewController.swift in Sources */,
 				1B291EDB25B1A62C002B6B8E /* PhotoViewController.swift in Sources */,
 				1B2115B225B202F800732633 /* PhotoCell.swift in Sources */,
 				1B2115A325B1F13900732633 /* PhotoDataModel.swift in Sources */,
