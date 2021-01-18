@@ -7,7 +7,9 @@
 
 import Foundation
 import UIKit
-
+/**
+ This class is the Presenter class. It mediates between model and controller class
+ */
 class PhotoDataPresenter {
     
     private let dataModel = PhotoDataModel()
@@ -145,10 +147,8 @@ class PhotoDataPresenter {
     */
     func updateQueryArray() {
         if var queryArray = DataManager.readDataFromUserDefaults(key: "queryArray") as? [String] {
-            if  queryArray.count >= 10 {
-                for index in 0...queryArray.count - 10 {
-                    queryArray.remove(at: index)
-                }
+            if  queryArray.count > 10 {
+                queryArray.remove(at: 0)
                 PhotoViewController.searchQueryArray = queryArray
             }
         }

@@ -51,7 +51,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
         self.pageController?.dataSource = self
         self.pageController?.delegate = self
         self.pageController?.view.backgroundColor = .clear
-        self.pageController?.view.frame = CGRect(x: 0, y: self.pageView.frame.origin.y, width: self.pageView.frame.width, height: self.pageView.frame.size.height)
+        //self.pageController?.view.frame = CGRect(x: 0, y: self.pageView.frame.origin.y, width: self.pageView.frame.width, height: self.pageView.frame.size.height)
         self.addChild(self.pageController!)
         self.pageView.addSubview(self.pageController!.view)
         
@@ -92,12 +92,13 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
         if index == photoDataObject?.count ?? 0 - 1 {
             index = 0
         }
+        pageControl.currentPage = index
         return index >= (self.photoDataObject?.count ?? 0 - 1) ? nil: self.viewForIndex(index: index)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let temp = viewController as? PageContentViewController else { return UIViewController() }
+        pageControl.currentPage = temp.index
         return temp.index == 0 ? nil: self.viewForIndex(index: temp.index - 1)
     }
-
 }

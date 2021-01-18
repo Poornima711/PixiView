@@ -33,17 +33,14 @@ class PageContentViewController: UIViewController {
         
         //download image
         if NetworkManagerClass.sharedInstance.isReachability {
-            self.imgView.loadThumbnail(urlString: url) { (_) in
+            self.imgView.loadThumbnail(urlString: url) { [weak self] (_) in
                 //stop loader
-                self.stopLoader()
+                self?.stopLoader()
             }
+            self.stopLoader()
         } else {
             self.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "")
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     /**

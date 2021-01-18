@@ -6,7 +6,9 @@
 //
 
 import Foundation
-
+/**
+ This class is the XML Parser class. It can be used to parse XML Data
+ */
 class XmlParser: NSObject, XMLParserDelegate {
     
     private var apiKey: String {

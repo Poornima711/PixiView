@@ -6,7 +6,9 @@
 //
 
 import Foundation
-
+/**
+    This class is a Reachability Wrapper Class. It checks whether device has internet connection or not
+*/
 class NetworkManagerClass {
     
     var reachability: Reachability!

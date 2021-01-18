@@ -6,6 +6,9 @@
 //
 
 import Foundation
+/**
+ This class handles UserDefault Methods
+ */
 class UserDefaultHandler: NSObject {
     
     /**

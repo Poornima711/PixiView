@@ -8,15 +8,27 @@
 import Foundation
 import UIKit
 
+/**
+    This class is a view controller class.
+    - Configures SearchBar and Implements UISearchBarDelegate methods
+    - Configures UICollectionView and Implements UICollectionView datasource and delegate methods
+    - Configures UITableView and Implements UITableView datasource and delegate methods
+*/
+
 extension PhotoViewController: UITableViewDataSource {
     
+    /**
+     This method configures UITableView
+     */
     func setUpTableView() {
         suggestionTableView.isHidden = true
         suggestionTableView.dataSource = self
         suggestionTableView.delegate = self
         suggestionTableView.backgroundColor = .white
         suggestionTableView.separatorStyle = .none
-        tableHeight.constant = rowHeight * 10
+        if let searchQueryArray = DataManager.readDataFromUserDefaults(key: "queryArray") {
+            tableHeight.constant = rowHeight * CGFloat(searchQueryArray.count)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -43,6 +55,8 @@ extension PhotoViewController: UITableViewDelegate {
         searchText = searchQueryArray[indexPath.row]
         presenter?.clearPhotoDataArray()
         page = 1
+        tapView.isHidden = true
+        self.view.endEditing(true)
         callSearchApi(pagination: false)
         helpLabel.isHidden = true
         suggestionTableView.isHidden = true

@@ -7,7 +7,9 @@
 
 import Foundation
 import UIKit
-
+/**
+ This class is the Model class. It contains API Calls
+ */
 class PhotoDataModel: NSObject {
     
     /**

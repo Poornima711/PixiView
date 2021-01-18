@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 
+/**
+    This class is a view controller class.
+    - Configures SearchBar and Implements UISearchBarDelegate methods
+    - Configures UICollectionView and Implements UICollectionView datasource and delegate methods
+    - Configures UITableView and Implements UITableView datasource and delegate methods
+*/
+
 extension PhotoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photoDataObject?.count ?? 0
@@ -25,7 +32,7 @@ extension PhotoViewController: UICollectionViewDataSource {
                     }
                 }
             } else {
-                self.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "Connect to Internet to Resume")
+                self.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "")
             }
         }
         return cell

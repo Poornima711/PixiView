@@ -21,6 +21,7 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var helpLabel: UILabel!
     @IBOutlet weak var suggestionTableView: UITableView!
     @IBOutlet weak var tableHeight: NSLayoutConstraint!
+    @IBOutlet weak var tapView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var presenter: PhotoDataPresenter?
@@ -42,13 +43,25 @@ class PhotoViewController: UIViewController {
         activityIndicator.isHidden = true
         suggestionTableView.register(UINib(nibName: "QueryTableViewCell", bundle: nil), forCellReuseIdentifier: "QueryTableViewCell")
         helpLabel.isHidden = false
+        tapView.isHidden = true
         setUpCollectionView()
+        addTapGesture()
         setUpSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         suggestionTableView.isHidden = true
+    }
+    
+    func addTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        tapView.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        self.view.endEditing(true)
+        tapView.isHidden = true
     }
     
     /**
@@ -111,6 +124,8 @@ extension PhotoViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.searchTextField.text else { return }
         self.helpLabel.isHidden = true
+        self.view.endEditing(true)
+        tapView.isHidden = true
         self.suggestionTableView.isHidden = true
         presenter?.clearPhotoDataArray()
         searchText = query
@@ -119,14 +134,18 @@ extension PhotoViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        tapView.isHidden = false
         if searchBar.text?.isEmpty ?? false {
             helpLabel.isHidden = false
             responseObject = nil
             photoDataObject = nil
+            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
             self.suggestionTableView.isHidden = true
             photoCollectionView.reloadData()
         } else {
             self.suggestionTableView.isHidden = false
+            presenter?.clearPhotoDataArray()
             suggestionTableView.reloadData()
         }
     }

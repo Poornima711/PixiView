@@ -35,12 +35,24 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="mZ0-xr-xHJ"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search to find some awesome images" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pe3-uJ-bL2">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Wvl-8x-wop">
+                                <rect key="frame" x="187" y="428" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="LEy-cD-Og9"/>
+                                    <constraint firstAttribute="width" constant="40" id="oeh-Kk-hAg"/>
+                                </constraints>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search to find some awesome images" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pe3-uJ-bL2">
                                 <rect key="frame" x="47.5" y="436.5" width="319.5" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsI-lp-3Lj">
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="det-m5-yAC">
                                 <rect key="frame" x="0.0" y="144" width="414" height="0.0"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -52,14 +64,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="vBs-E5-BQE"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Wvl-8x-wop">
-                                <rect key="frame" x="187" y="428" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="LEy-cD-Og9"/>
-                                    <constraint firstAttribute="width" constant="40" id="oeh-Kk-hAg"/>
-                                </constraints>
-                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -68,10 +72,14 @@
                             <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="F4z-jz-KBE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="det-m5-yAC" secondAttribute="trailing" id="Ffy-C3-E11"/>
                             <constraint firstItem="LqN-Rt-PJV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IYy-Nd-SfV"/>
+                            <constraint firstItem="CsI-lp-3Lj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LLL-Lz-tLI"/>
+                            <constraint firstItem="CsI-lp-3Lj" firstAttribute="top" secondItem="0Cs-TV-VMV" secondAttribute="bottom" id="S3O-Vg-WRe"/>
                             <constraint firstItem="Wvl-8x-wop" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TJn-nc-NJo"/>
                             <constraint firstItem="det-m5-yAC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TmC-YC-yJW"/>
                             <constraint firstItem="LqN-Rt-PJV" firstAttribute="top" secondItem="0Cs-TV-VMV" secondAttribute="bottom" id="UkL-lJ-FYW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CsI-lp-3Lj" secondAttribute="bottom" id="YiN-QN-zns"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LqN-Rt-PJV" secondAttribute="trailing" id="edr-yG-hr0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CsI-lp-3Lj" secondAttribute="trailing" id="epp-Af-Eah"/>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gwx-As-JsF"/>
                             <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kLe-rb-FMa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LqN-Rt-PJV" secondAttribute="bottom" id="nmn-qX-06t"/>
@@ -88,6 +96,7 @@
                         <outlet property="searchBar" destination="0Cs-TV-VMV" id="j0i-ev-cE3"/>
                         <outlet property="suggestionTableView" destination="det-m5-yAC" id="xIL-2u-MOp"/>
                         <outlet property="tableHeight" destination="1uB-fb-Nf9" id="bXg-l5-SZu"/>
+                        <outlet property="tapView" destination="CsI-lp-3Lj" id="cea-DT-FCM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -160,7 +169,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="lAr-i2-7Mo">
+                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="lAr-i2-7Mo">
                                 <rect key="frame" x="10" y="54" width="394" height="28"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="currentPageIndicatorTintColor" red="1" green="0.98431372549999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

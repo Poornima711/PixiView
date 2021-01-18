@@ -6,7 +6,9 @@
 //
 
 import Foundation
-
+/**
+ The data manager wrapper class to store data using UserDefaults
+ */
 class DataManager: NSObject {
     
     /**

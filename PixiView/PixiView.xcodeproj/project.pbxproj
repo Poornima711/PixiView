@@ -253,7 +253,7 @@
 				1B291ED125B1A62C002B6B8E /* Resources */,
 				1B21155A25B1C9A400732633 /* ShellScript */,
 				63A9C8F5716923A55C490A2C /* [CP] Embed Pods Frameworks */,
-				1BDE70EB25B5EB8800AD0746 /* ShellScript */,
+				1BDE711425B5FEC000AD0746 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -332,7 +332,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		1BDE70EB25B5EB8800AD0746 /* ShellScript */ = {
+		1BDE711425B5FEC000AD0746 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -340,6 +340,8 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			outputFileListPaths = (
 			);
