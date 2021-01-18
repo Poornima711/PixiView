@@ -7,9 +7,14 @@
 
 import Foundation
 import CommonCrypto
-
+/**
+ This URLSession Wrapper class.
+ */
 class ApiHandler: NSObject {
     
+    /**
+     This is the Shared Instance of  ApiHandler class
+     */
     static let sharedInstance: ApiHandler = ApiHandler()
     
     let pinnedPublicKeyHash = [
@@ -31,6 +36,12 @@ class ApiHandler: NSObject {
         return Data(bytes: hash, count: hash.count).base64EncodedString()
     }
     
+    /**
+        This method carries out the network for the specified URL.
+     
+        - Parameter serviceParameters: contains url request
+        - Parameter completionHandler: ApiServiceRequestResponse Object handling success and failure scenarios
+    */
     func sendRequestToServer(serviceParameters: URLRequestParameters, completionHandler: @escaping ((_ apiRequestResponse: ApiServiceRequestResponse<Data, ApiError>) -> Void)) {
         
         let config = URLSessionConfiguration.default
@@ -67,6 +78,12 @@ class ApiHandler: NSObject {
         session.finishTasksAndInvalidate()
     }
     
+    /**
+        This method downloads image from the URL.
+     
+        - Parameter url: url string of the image to be downloaded
+        - Parameter completionHandler: ApiServiceRequestResponse Object handling success and failure scenarios
+    */
     func downloadImageFromURL(url: String, completionHandler: @escaping ((_ apiRequestResponse: ApiServiceRequestResponse<Data, ApiError>) -> Void)) {
         if url.isEmpty { return }
         let config = URLSessionConfiguration.default

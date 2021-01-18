@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ The enum containing Error Codes
+ */
 enum ResponseStatusCode: Int {
     case success = 200
     case badRequest = 400
@@ -15,11 +18,17 @@ enum ResponseStatusCode: Int {
     case serverError = 500
 }
 
+/**
+ The enum containing Request Types
+ */
 enum RequestType: String {
     case get = "GET"
     case post = "POST"
 }
 
+/**
+ The enum containing Error Messages
+ */
 enum ErrorMessages: String {
     case networkUnreachable = "No Network Connectivity"
     case serverUnreachable = "Could not connect to server. Please try again later"
@@ -28,6 +37,9 @@ enum ErrorMessages: String {
     case notJSON = "not a json"
 }
 
+/**
+ The enum containing Error
+ */
 enum ApiError: Error {
     case noInternetConnection
     case serverError
@@ -35,16 +47,25 @@ enum ApiError: Error {
     case custom(_ error: Error, _ message: String)
 }
 
+/**
+ The enum containing Request Scenarios
+ */
 enum ApiServiceRequestStatus<T1, T2> where T2: Error {
     case success(_ data: T1)
     case failure(_ error: T2)
 }
 
+/**
+ The enum containing ApiServiceRequestResponse Scenarios
+ */
 struct ApiServiceRequestResponse<T1, T2> where T2: Error {
     var requestStatus: ApiServiceRequestStatus<T1, T2>
     var response: URLResponse?
 }
 
+/**
+ This struct provides URL Request
+ */
 struct URLRequestParameters {
     private(set) var requestURL: String
     private(set) var requestType: RequestType
@@ -54,6 +75,10 @@ struct URLRequestParameters {
     private(set) var additionalHeaders: [String: String] = Dictionary() //key:value
     private(set) var tag: AnyObject?
     
+    /**
+     This method creates URLRequest
+     - Returns: URLRequest and error if any
+     */
     func getUrlRequest() -> (request: URLRequest?, errorMessage: String) {
         
         switch requestType {
@@ -84,6 +109,11 @@ struct URLRequestParameters {
         }
     }
     
+    /**
+     This method creates URLRequest
+     - Parameter url: URL for the post request
+     - Returns: URLRequest
+     */
     func handlePostRequest(url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = requestType.rawValue
@@ -106,6 +136,11 @@ struct URLRequestParameters {
         return request
     }
     
+    /**
+     This method creates URLRequest
+     - Parameter url: URL for the get request
+     - Returns: URLRequest
+     */
     func handleGetRequest(url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = requestType.rawValue

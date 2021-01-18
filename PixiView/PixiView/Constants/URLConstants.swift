@@ -6,7 +6,9 @@
 //
 
 import Foundation
-
+/**
+ This class stores the static URL values.
+ */
 class URLConstants {
     
     static var searchURL = "https://pixabay.com/api/"

@@ -9,11 +9,19 @@ import Foundation
 import UIKit
 
 let imageCache = NSCache<AnyObject, AnyObject>()
-
+/**
+    This class is custom UIImageView class which enables asynchronous image downloads and image caching.
+ */
 class CustomImageView: UIImageView {
     
     var imageUrlString: String?
 
+    /**
+        This method downloads image asynchronously.
+        - Caches the image and sets the image cache if available
+        - Parameter urlString: The urlString of the image to be downloaded
+        - Parameter completion: Bool value to indicate whether the execution has completed successfully
+     */
     func loadThumbnail(urlString: String, completion: @escaping (_ success: Bool) -> Void) {
         
         imageUrlString = urlString
@@ -53,6 +61,11 @@ class CustomImageView: UIImageView {
         }
     }
     
+    /**
+     This method stores image in Cache.
+     - Parameter imageToCache: Image that needs to be cached
+     - Parameter urlString: The urlString of the image to be downloaded
+     */
     func storeInCache(imageToCache: UIImage, urlString: String) {
         if self.imageUrlString == urlString {
             self.image = imageToCache
