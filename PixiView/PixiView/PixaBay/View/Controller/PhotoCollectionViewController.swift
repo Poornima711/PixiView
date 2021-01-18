@@ -47,30 +47,12 @@ extension PhotoViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "PixiView", bundle: nil)
-        self.pageViewController = storyBoard.instantiateViewController(withIdentifier: "ImagePageViewController" ) as? ImagePageViewController
-        
-        self.pageViewController?.dataSource = self
-        self.pageViewController?.delegate = self
-        self.pageViewController?.view.frame = self.view.frame
-        
-        guard let controller = pageViewController else { return }
-        
-        let startingViewController: ImageViewController! = self.viewForIndex(index: indexPath.row)
-        startingViewController.view.frame = CGRect(x: 0, y: 0, width: controller.view.frame.width, height: controller.view.frame.height)
-        if let url = photoDataObject?[indexPath.row].largeImageURL {
-            startingViewController.url = url
+        if let detail = storyBoard.instantiateViewController(withIdentifier: "DetailViewController" ) as? DetailViewController {
+            detail.responseObject = responseObject
+            detail.photoDataObject = photoDataObject
+            detail.selectedPosition = indexPath.row
+            self.navigationController?.pushViewController(detail, animated: true)
         }
-        startingViewController.numberOfPages = responseObject?.totalHits ?? 0
-        let viewControllers: NSArray = [startingViewController as Any]
-        self.pageViewController?.setViewControllers(viewControllers as? [UIViewController], direction: UIPageViewController.NavigationDirection.forward, animated: true, completion: nil)
-        
-        if self.title != nil {
-            self.pageViewController?.navigationItem.title = self.title
-        }
-        
-        self.navigationController?.pushViewController(controller, animated: true)
-        
-        collectionView.contentInsetAdjustmentBehavior = .never
     }
     
 }

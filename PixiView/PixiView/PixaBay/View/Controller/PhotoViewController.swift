@@ -61,7 +61,7 @@ class PhotoViewController: UIViewController {
                 self?.responseObject = self?.presenter?.getResponseObject()
                 self?.photoDataObject = self?.presenter?.getPhotoDataObject()
                 self?.totalImages = self?.responseObject?.totalHits
-                self?.fillSearchArray()
+                self?.presenter?.fillSearchArray(searchText: self?.searchText ?? "")
                 self?.activityIndicator.stopAnimating()
                 self?.activityIndicator.isHidden = true
                 self?.photoCollectionView.reloadData()
@@ -78,29 +78,6 @@ class PhotoViewController: UIViewController {
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(action)
         self.navigationController?.present(alert, animated: true, completion: nil)
-    }
-    
-    func fillSearchArray() {
-        if var queryArray = DataManager.readDataFromUserDefaults(key: "queryArray") as? [String] {
-            if !queryArray.contains(searchText) {
-                queryArray.append(searchText)
-            }
-            PhotoViewController.searchQueryArray = queryArray
-        }
-        DataManager.writeDataToUserDefaults(data: PhotoViewController.searchQueryArray as AnyObject, key: "queryArray")
-        updateQueryArray()
-    }
-    
-    func updateQueryArray() {
-        if var queryArray = DataManager.readDataFromUserDefaults(key: "queryArray") as? [String] {
-            if  queryArray.count > 10 {
-                for index in 0...queryArray.count - 10 {
-                    queryArray.remove(at: index)
-                }
-                PhotoViewController.searchQueryArray = queryArray
-            }
-        }
-        DataManager.writeDataToUserDefaults(data: PhotoViewController.searchQueryArray as AnyObject, key: "queryArray")
     }
 }
 

@@ -95,24 +95,16 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="86.383928571428569"/>
         </scene>
-        <!--Image Page View Controller-->
-        <scene sceneID="WZM-eb-OoZ">
-            <objects>
-                <pageViewController storyboardIdentifier="ImagePageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="I1n-YE-c8j" customClass="ImagePageViewController" customModule="PixiView" customModuleProvider="target" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BPF-IP-dpp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1967" y="86"/>
-        </scene>
-        <!--Image View Controller-->
+        <!--Page Content View Controller-->
         <scene sceneID="FhE-IN-kDY">
             <objects>
-                <viewController storyboardIdentifier="ImageViewController" id="NRu-pg-A8j" customClass="ImageViewController" customModule="PixiView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PageContentViewController" id="NRu-pg-A8j" customClass="PageContentViewController" customModule="PixiView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p00-Ph-yjq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dAd-zi-8yC" customClass="CustomImageView" customModule="PixiView" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="790"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ncu-ax-Ue9">
                                 <rect key="frame" x="187" y="428" width="40" height="40"/>
@@ -122,30 +114,21 @@
                                 </constraints>
                                 <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="RTN-FF-Pex">
-                                <rect key="frame" x="146" y="834" width="123" height="28"/>
-                                <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="currentPageIndicatorTintColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QH8-AD-nRQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dAd-zi-8yC" firstAttribute="leading" secondItem="QH8-AD-nRQ" secondAttribute="leading" id="8Uj-GW-6A5"/>
+                            <constraint firstItem="QH8-AD-nRQ" firstAttribute="bottom" secondItem="dAd-zi-8yC" secondAttribute="bottom" id="9c6-bU-tTv"/>
                             <constraint firstItem="dAd-zi-8yC" firstAttribute="top" secondItem="QH8-AD-nRQ" secondAttribute="top" id="B3H-rO-aj8"/>
                             <constraint firstItem="Ncu-ax-Ue9" firstAttribute="centerY" secondItem="p00-Ph-yjq" secondAttribute="centerY" id="Hig-TT-Ydk"/>
-                            <constraint firstItem="QH8-AD-nRQ" firstAttribute="trailing" secondItem="RTN-FF-Pex" secondAttribute="trailing" constant="145" id="RTV-PQ-dXM"/>
                             <constraint firstItem="QH8-AD-nRQ" firstAttribute="trailing" secondItem="dAd-zi-8yC" secondAttribute="trailing" id="YAl-MS-X10"/>
                             <constraint firstItem="Ncu-ax-Ue9" firstAttribute="centerX" secondItem="p00-Ph-yjq" secondAttribute="centerX" id="nNq-o4-wF7"/>
-                            <constraint firstItem="RTN-FF-Pex" firstAttribute="bottom" secondItem="QH8-AD-nRQ" secondAttribute="bottom" id="sul-Hx-qQc"/>
-                            <constraint firstItem="RTN-FF-Pex" firstAttribute="top" secondItem="dAd-zi-8yC" secondAttribute="bottom" id="wZ3-0c-I24"/>
-                            <constraint firstItem="RTN-FF-Pex" firstAttribute="leading" secondItem="QH8-AD-nRQ" secondAttribute="leading" constant="146" id="zCY-79-GLP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="Ncu-ax-Ue9" id="q3N-OT-z3V"/>
                         <outlet property="imgView" destination="dAd-zi-8yC" id="1cy-cE-Yyg"/>
-                        <outlet property="pageControl" destination="RTN-FF-Pex" id="2F5-Pj-u9W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vOR-Mh-z27" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -169,6 +152,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNG-l2-1n4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="86.383928571428569"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="Mbc-Kh-A05">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oCT-R0-3De" customClass="DetailViewController" customModule="PixiView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6uJ-Y5-PTq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="lAr-i2-7Mo">
+                                <rect key="frame" x="10" y="54" width="394" height="28"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" red="1" green="0.98431372549999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5v-g0-Vyo">
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7TY-ud-Pjt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="I5v-g0-Vyo" firstAttribute="top" secondItem="lAr-i2-7Mo" secondAttribute="bottom" constant="10" id="6Th-n9-S8N"/>
+                            <constraint firstItem="7TY-ud-Pjt" firstAttribute="trailing" secondItem="I5v-g0-Vyo" secondAttribute="trailing" id="K0c-an-0Hj"/>
+                            <constraint firstItem="lAr-i2-7Mo" firstAttribute="top" secondItem="7TY-ud-Pjt" secondAttribute="top" constant="10" id="Olw-1z-dlw"/>
+                            <constraint firstItem="7TY-ud-Pjt" firstAttribute="trailing" secondItem="lAr-i2-7Mo" secondAttribute="trailing" constant="10" id="Ps0-Sw-DaY"/>
+                            <constraint firstItem="lAr-i2-7Mo" firstAttribute="leading" secondItem="7TY-ud-Pjt" secondAttribute="leading" constant="10" id="TX8-mI-SLT"/>
+                            <constraint firstItem="7TY-ud-Pjt" firstAttribute="bottom" secondItem="I5v-g0-Vyo" secondAttribute="bottom" id="lRq-b4-aP0"/>
+                            <constraint firstItem="I5v-g0-Vyo" firstAttribute="leading" secondItem="7TY-ud-Pjt" secondAttribute="leading" id="uDr-fG-ehH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pageControl" destination="lAr-i2-7Mo" id="g92-aj-L0c"/>
+                        <outlet property="pageView" destination="I5v-g0-Vyo" id="J91-Ag-1Ls"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gDL-pQ-b0A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3591.3043478260875" y="-39.508928571428569"/>
         </scene>
     </scenes>
     <resources>
