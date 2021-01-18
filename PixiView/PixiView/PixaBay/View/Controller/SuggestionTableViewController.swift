@@ -16,7 +16,11 @@ extension PhotoViewController: UITableViewDataSource {
         suggestionTableView.delegate = self
         suggestionTableView.backgroundColor = .white
         suggestionTableView.separatorStyle = .none
-        tableHeight.constant = suggestionTableView.contentSize.height
+        tableHeight.constant = rowHeight * 10
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -42,10 +42,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="det-m5-yAC">
-                                <rect key="frame" x="0.0" y="144" width="414" height="608"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="0.0"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="1uB-fb-Nf9"/>
+                                    <constraint firstAttribute="height" id="1uB-fb-Nf9"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Kjq-dr-TNe"/>
@@ -74,7 +74,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LqN-Rt-PJV" secondAttribute="trailing" id="edr-yG-hr0"/>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gwx-As-JsF"/>
                             <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kLe-rb-FMa"/>
-                            <constraint firstItem="det-m5-yAC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kY3-cU-XlR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LqN-Rt-PJV" secondAttribute="bottom" id="nmn-qX-06t"/>
                             <constraint firstItem="Wvl-8x-wop" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ph1-LI-3g7"/>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tGb-5g-lSU"/>

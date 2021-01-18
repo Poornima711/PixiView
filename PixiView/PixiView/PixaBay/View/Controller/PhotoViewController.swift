@@ -30,6 +30,7 @@ class PhotoViewController: UIViewController {
     var totalImages: Int?
     var page = 1
     var searchText: String = ""
+    var rowHeight: CGFloat = 30.0
     static var searchQueryArray: [String] = []
 
     override func viewDidLoad() {
@@ -83,7 +84,7 @@ class PhotoViewController: UIViewController {
                 self?.activityIndicator.isHidden = true
                 self?.photoCollectionView.reloadData()
             } else {
-                if self?.page == 1 { // show error only when page = 1 (becoz in first page itself we couldnot find the data), else dont show error
+                if self?.page == 1 { 
                     self?.showAlert(title: "Oops!", message: "We could not find what you are looking for, try searching something else.")
                 }
             }
