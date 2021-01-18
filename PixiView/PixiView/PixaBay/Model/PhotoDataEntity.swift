@@ -18,6 +18,8 @@ struct PhotoResponse: Decodable {
         case hits
     }
     
+    init() { }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: PhotoResponseKeys.self)
         total = try container.decodeIfPresent(Int.self, forKey: .total) ?? 0
@@ -42,6 +44,8 @@ struct PhotoData: Decodable {
         case userImageURL
         case webformatURL
     }
+    
+    init() { }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: PhotoDataKeys.self)

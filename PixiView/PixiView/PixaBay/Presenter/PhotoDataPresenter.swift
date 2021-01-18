@@ -32,15 +32,6 @@ class PhotoDataPresenter {
         }
     }
     
-    func download(url: String, completion: @escaping (_ image: UIImage?) -> Void) {
-        dataModel.downloadImage(url: url) { (data) in
-            if data != nil {
-                let image = UIImage(data: data ?? Data())
-                completion(image)
-            }
-        }
-    }
-    
     func getResponseObject() -> PhotoResponse? {
         return self.responseObject
     }
@@ -59,5 +50,9 @@ class PhotoDataPresenter {
     
     func createThumbnailImages(image: UIImage) {
         self.photoArray?.append(image)
+    }
+    
+    func callXMParser() {
+        self.dataModel.tempParserMethod()
     }
 }

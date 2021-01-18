@@ -13,5 +13,6 @@ class ImagePageViewController: UIPageViewController {
         super.viewDidLoad()
         self.title = "PixiView"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
     }
 }

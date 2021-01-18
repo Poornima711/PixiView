@@ -11,21 +11,30 @@ class ImageViewController: UIViewController {
 
     @IBOutlet var imgView: CustomImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     //variable declarations
     var index: Int = 0
-    var image: UIImage!
     var url: String = ""
-    var name: String = ""
-    var pointToCenterAfterResize: CGPoint?
+    var numberOfPages: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        pageControl.currentPageIndicatorTintColor = .yellow
+        pageControl.pageIndicatorTintColor = .lightGray
+        pageControl.tintColor = .gray
+        pageControl.currentPage = index
+        pageControl.numberOfPages = numberOfPages ?? 1
         startLoader()
         self.imgView.loadThumbnail(urlString: url) { (_) in
             self.stopLoader()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        pageControlSetUp()
     }
     
     func startLoader() {
@@ -36,5 +45,10 @@ class ImageViewController: UIViewController {
     func stopLoader() {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
+    }
+    
+    fileprivate func pageControlSetUp() {
+        pageControl?.numberOfPages = numberOfPages ?? 1
+        pageControl?.currentPage = index
     }
 }

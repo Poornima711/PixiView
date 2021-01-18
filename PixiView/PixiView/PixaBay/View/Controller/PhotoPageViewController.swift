@@ -17,6 +17,7 @@ extension PhotoViewController: UIPageViewControllerDelegate, UIPageViewControlle
         let pageContentObj: ImageViewController = ((storyboard.instantiateViewController(withIdentifier: "ImageViewController")) as? ImageViewController)!
         
         pageContentObj.index = index
+        pageContentObj.numberOfPages = self.responseObject?.totalHits ?? 0
         pageContentObj.url = self.photoDataObject?[index].largeImageURL ?? ""
         return pageContentObj
     }

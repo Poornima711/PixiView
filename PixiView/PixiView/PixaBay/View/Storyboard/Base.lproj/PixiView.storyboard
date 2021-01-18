@@ -112,7 +112,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dAd-zi-8yC" customClass="CustomImageView" customModule="PixiView" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="790"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ncu-ax-Ue9">
                                 <rect key="frame" x="187" y="428" width="40" height="40"/>
@@ -122,6 +122,11 @@
                                 </constraints>
                                 <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="RTN-FF-Pex">
+                                <rect key="frame" x="146" y="834" width="123" height="28"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QH8-AD-nRQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -129,14 +134,18 @@
                             <constraint firstItem="dAd-zi-8yC" firstAttribute="leading" secondItem="QH8-AD-nRQ" secondAttribute="leading" id="8Uj-GW-6A5"/>
                             <constraint firstItem="dAd-zi-8yC" firstAttribute="top" secondItem="QH8-AD-nRQ" secondAttribute="top" id="B3H-rO-aj8"/>
                             <constraint firstItem="Ncu-ax-Ue9" firstAttribute="centerY" secondItem="p00-Ph-yjq" secondAttribute="centerY" id="Hig-TT-Ydk"/>
+                            <constraint firstItem="QH8-AD-nRQ" firstAttribute="trailing" secondItem="RTN-FF-Pex" secondAttribute="trailing" constant="145" id="RTV-PQ-dXM"/>
                             <constraint firstItem="QH8-AD-nRQ" firstAttribute="trailing" secondItem="dAd-zi-8yC" secondAttribute="trailing" id="YAl-MS-X10"/>
                             <constraint firstItem="Ncu-ax-Ue9" firstAttribute="centerX" secondItem="p00-Ph-yjq" secondAttribute="centerX" id="nNq-o4-wF7"/>
-                            <constraint firstItem="QH8-AD-nRQ" firstAttribute="bottom" secondItem="dAd-zi-8yC" secondAttribute="bottom" id="wZ3-0c-I24"/>
+                            <constraint firstItem="RTN-FF-Pex" firstAttribute="bottom" secondItem="QH8-AD-nRQ" secondAttribute="bottom" id="sul-Hx-qQc"/>
+                            <constraint firstItem="RTN-FF-Pex" firstAttribute="top" secondItem="dAd-zi-8yC" secondAttribute="bottom" id="wZ3-0c-I24"/>
+                            <constraint firstItem="RTN-FF-Pex" firstAttribute="leading" secondItem="QH8-AD-nRQ" secondAttribute="leading" constant="146" id="zCY-79-GLP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="Ncu-ax-Ue9" id="q3N-OT-z3V"/>
                         <outlet property="imgView" destination="dAd-zi-8yC" id="1cy-cE-Yyg"/>
+                        <outlet property="pageControl" destination="RTN-FF-Pex" id="2F5-Pj-u9W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vOR-Mh-z27" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

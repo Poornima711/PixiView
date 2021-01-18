@@ -9,9 +9,7 @@ import Foundation
 import UIKit
 
 class PhotoDataModel: NSObject {
-    
-    //private let apiKey = "19900784-4f8a196cde58034f3d5553367"
-    
+        
     private var apiKey: String {
         guard let filePath = Bundle.main.path(forResource: "Pixabay-Info", ofType: "plist") else {
           fatalError("Couldn't find file 'Pixabay-Info.plist'.")
@@ -65,14 +63,26 @@ class PhotoDataModel: NSObject {
         }
     }
     
-    func downloadImage(url: String, completion: @escaping (_ response: Data?) -> Void) {
-        ApiHandler.sharedInstance.downloadImageFromURL(url: url) { (requestResponse) in
+    func getPaginatingFlag() -> Bool {
+        return isPaginating
+    }
+    
+    func callSearchXml(for searchKey: String, page: String, pagination: Bool, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
+        let urlString = URLConstants.searchURL
+        let inputParams: [String: AnyObject] = ["key": apiKey as AnyObject, "q": searchKey as AnyObject, "image_type": "photo" as AnyObject, "page": page as AnyObject]
+        let request = URLRequestParameters(requestURL: urlString, requestType: .get, requestParams: inputParams)
+        if pagination {
+            self.isPaginating = true
+        }
+        ApiHandler.sharedInstance.sendRequestToServer(serviceParameters: request) { (requestResponse) in
             let statusCode = (requestResponse.response as? HTTPURLResponse)?.statusCode ?? 0
             switch statusCode {
             case ResponseStatusCode.success.rawValue:
                 switch requestResponse.requestStatus {
                 case .success(let data):
-                    completion(data)
+                    let parser = XmlParser(data: data)
+                    parser.parse()
+                    self.isPaginating = false
                 case .failure(let error):
                     print(error)
                     completion(nil)
@@ -89,9 +99,5 @@ class PhotoDataModel: NSObject {
                 print("Error")
             }
         }
-    }
-    
-    func getPaginatingFlag() -> Bool {
-        return isPaginating
     }
 }

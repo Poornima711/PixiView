@@ -31,10 +31,12 @@ class PhotoViewController: UIViewController {
         self.title = "PixiView"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.presenter = PhotoDataPresenter(controller: self)
+        activityIndicator.isHidden = true
         suggestionTableView.register(UINib(nibName: "QueryTableViewCell", bundle: nil), forCellReuseIdentifier: "QueryTableViewCell")
         helpLabel.isHidden = false
         setUpCollectionView()
         setUpSearchBar()
+        presenter?.callXMParser()
     }
     
     override func viewWillAppear(_ animated: Bool) {

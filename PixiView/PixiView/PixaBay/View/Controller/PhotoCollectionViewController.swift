@@ -60,6 +60,7 @@ extension PhotoViewController: UICollectionViewDelegate {
         if let url = photoDataObject?[indexPath.row].largeImageURL {
             startingViewController.url = url
         }
+        startingViewController.numberOfPages = responseObject?.totalHits ?? 0
         let viewControllers: NSArray = [startingViewController as Any]
         self.pageViewController?.setViewControllers(viewControllers as? [UIViewController], direction: UIPageViewController.NavigationDirection.forward, animated: true, completion: nil)
         
