@@ -20,6 +20,15 @@ class PhotoDataPresenter {
         self.controller = controller
     }
     
+    /**
+        This method parses JSON data.
+     
+         - Parameter searchKey: The text searched by user
+         - Parameter pageNumber: The number of page needed. New search is always zero and page number changes on scroll
+         - Parameter pagination: The bool value indicating whether pagination is needed
+         - Parameter completion: closure to indicate whether the completed executing successfully
+         - Returns: The full name as a string value.
+    */
     func getSearchResult(searchKey: String, pageNumber: Int, pagination: Bool, completion: @escaping (_ success: Bool) -> Void) {
         dataModel.callSearch(for: searchKey, page: "\(pageNumber)", pagination: pagination) { [weak self] (photoData) in
             if photoData?.hits.count == 0 {
@@ -32,33 +41,48 @@ class PhotoDataPresenter {
         }
     }
     
+    /**
+        This method used to fetch PhotoResponse Object.
+     
+         - Returns: The PhotoResponse Object.
+    */
     func getResponseObject() -> PhotoResponse? {
         return self.responseObject
     }
     
+    /**
+        This method used to fetch PhotoData Array.
+     
+         - Returns: The PhotoData Array.
+    */
     func getPhotoDataObject() -> [PhotoData]? {
         return self.photoDataObject
     }
     
+    /**
+        This method is used to PhotoData Array.
+    */
     func clearPhotoDataArray() {
         self.photoDataObject.removeAll()
     }
     
+    /**
+        This method used to get the status of API Pagination call.
+    */
     func isPaginating() -> Bool {
         return dataModel.getPaginatingFlag()
     }
     
-    func createThumbnailImages(image: UIImage) {
-        self.photoArray?.append(image)
-    }
-    
     /**
-        This is an extremely complicated method that concatenates the first and last name and produces the full name.
+        This method parses XML data.
      
-        - Parameter firstname: The first part of the full name.
-        - Parameter lastname: The last part of the fullname.
-        - Returns: The full name as a string value.
+         - Parameter searchKey: The text searched by user
+         - Parameter pageNumber: The number of page needed. New search is always zero and page number changes on scroll
+         - Parameter pagination: The bool value indicating whether pagination is needed
+         - Parameter completion: closure to indicate whether the completed executing successfully
+         - Returns: The full name as a string value.
     */
+
     func getSearchResultsFromXML(searchKey: String, pageNumber: Int, pagination: Bool, completion: @escaping (_ success: Bool) -> Void) {
         dataModel.callSearchXml(for: searchKey, page: "\(pageNumber)", pagination: pagination) { [weak self] (photoData) in
             if photoData?.hits.count == 0 {
@@ -71,6 +95,11 @@ class PhotoDataPresenter {
         }
     }
     
+    /**
+        This method fills the suggestion array and also stores the array in UserDefaults.
+     
+         - Parameter searchText: The text searched by user
+    */
     func fillSearchArray(searchText: String) {
         if var queryArray = DataManager.readDataFromUserDefaults(key: "queryArray") as? [String] {
             if !queryArray.contains(searchText) {
@@ -82,6 +111,9 @@ class PhotoDataPresenter {
         updateQueryArray()
     }
     
+    /**
+        This method removes the query from the list if it exceeds the count  of 10 and updates the array in UserDefaults.
+    */
     func updateQueryArray() {
         if var queryArray = DataManager.readDataFromUserDefaults(key: "queryArray") as? [String] {
             if  queryArray.count >= 10 {
