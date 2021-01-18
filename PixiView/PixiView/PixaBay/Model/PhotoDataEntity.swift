@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+    This struct PhotoResponse is the entity struct for Search API Data Object.
+*/
 struct PhotoResponse: Decodable {
     var total: Int = 0
     var totalHits: Int = 0
@@ -20,6 +23,7 @@ struct PhotoResponse: Decodable {
     
     init() { }
     
+    //Decode Data
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: PhotoResponseKeys.self)
         total = try container.decodeIfPresent(Int.self, forKey: .total) ?? 0
@@ -28,6 +32,9 @@ struct PhotoResponse: Decodable {
     }
 }
 
+/**
+    This struct PhotoData is the entity struct for Hits array.
+*/
 struct PhotoData: Decodable {
     //var photoId: Int = 0
     var previewURL: String = ""
@@ -47,6 +54,7 @@ struct PhotoData: Decodable {
     
     init() { }
     
+    //Decode data
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: PhotoDataKeys.self)
         //photoId = try container.decodeIfPresent(Int.self, forKey: .id) ?? 0

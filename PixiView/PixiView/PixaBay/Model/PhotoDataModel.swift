@@ -9,7 +9,10 @@ import Foundation
 import UIKit
 
 class PhotoDataModel: NSObject {
-        
+    
+    /**
+        The variable fetches API Key from the properlist file.
+    */
     private var apiKey: String {
         guard let filePath = Bundle.main.path(forResource: "Pixabay-Info", ofType: "plist") else {
           fatalError("Couldn't find file 'Pixabay-Info.plist'.")
@@ -23,6 +26,14 @@ class PhotoDataModel: NSObject {
     
     var isPaginating = false
     
+    /**
+        This method calls Search API to fetch JSON data.
+     
+         - Parameter searchKey: The text searched by user
+         - Parameter page: The number of page needed. New search is always zero and page number changes on scroll
+         - Parameter pagination: The bool value indicating whether pagination is needed
+         - Parameter completion: closure takes PhotoResponse object
+    */
     func callSearch(for searchKey: String, page: String, pagination: Bool, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
         let urlString = URLConstants.searchURL
         let inputParams: [String: AnyObject] = ["key": apiKey as AnyObject, "q": searchKey as AnyObject, "image_type": "photo" as AnyObject, "page": page as AnyObject]
@@ -63,10 +74,21 @@ class PhotoDataModel: NSObject {
         }
     }
     
+    /**
+        This method used to get the status of API Pagination call.
+    */
     func getPaginatingFlag() -> Bool {
         return isPaginating
     }
     
+    /**
+        This method calls Search API to fetch XML data.
+     
+         - Parameter searchKey: The text searched by user
+         - Parameter page: The number of page needed. New search is always zero and page number changes on scroll
+         - Parameter pagination: The bool value indicating whether pagination is needed
+         - Parameter completion: closure takes PhotoResponse  data object
+    */
     func callSearchXml(for searchKey: String, page: String, pagination: Bool, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
         let urlString = URLConstants.searchURL
         let inputParams: [String: AnyObject] = ["key": apiKey as AnyObject, "q": searchKey as AnyObject, "image_type": "photo" as AnyObject, "page": page as AnyObject]
