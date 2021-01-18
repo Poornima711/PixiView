@@ -36,7 +36,6 @@ class PhotoViewController: UIViewController {
         helpLabel.isHidden = false
         setUpCollectionView()
         setUpSearchBar()
-        presenter?.callXMParser()
     }
     
     override func viewWillAppear(_ animated: Bool) {

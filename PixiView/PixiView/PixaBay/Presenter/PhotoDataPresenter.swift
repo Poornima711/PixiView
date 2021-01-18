@@ -52,7 +52,15 @@ class PhotoDataPresenter {
         self.photoArray?.append(image)
     }
     
-    func callXMParser() {
-        self.dataModel.tempParserMethod()
+    func getSearchResultsFromXML(searchKey: String, pageNumber: Int, pagination: Bool, completion: @escaping (_ success: Bool) -> Void) {
+        dataModel.callSearchXml(for: searchKey, page: "\(pageNumber)", pagination: pagination) { [weak self] (photoData) in
+            if photoData?.hits.count == 0 {
+                completion(false)
+            } else {
+                self?.responseObject = photoData
+                self?.photoDataObject.append(contentsOf: photoData?.hits ?? [])
+                completion(true)
+            }
+        }
     }
 }
