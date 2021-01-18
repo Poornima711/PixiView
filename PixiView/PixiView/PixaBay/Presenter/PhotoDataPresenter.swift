@@ -2,7 +2,7 @@
 //  PhotoDataPresenter.swift
 //  PixiView
 //
-//  Created by tcs on 16/01/21.
+//  Created by Poornima Rao on 16/01/21.
 //
 
 import Foundation
