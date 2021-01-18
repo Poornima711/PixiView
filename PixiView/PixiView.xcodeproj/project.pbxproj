@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,9 +35,12 @@
 		1BDE70D325B5B5DF00AD0746 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE70D225B5B5DF00AD0746 /* DetailViewController.swift */; };
 		1BDE70DA25B5DE3200AD0746 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE70D925B5DE3200AD0746 /* Reachability.swift */; };
 		1BDE70DD25B5DEBE00AD0746 /* NetworkManagerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE70DC25B5DEBE00AD0746 /* NetworkManagerClass.swift */; };
+		1BDE70EE25B5EC8800AD0746 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BDE70ED25B5EC8800AD0746 /* GoogleService-Info.plist */; };
+		36889F0C569DBD996BBA026F /* Pods_PixiView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C93464E400E324F33DD146 /* Pods_PixiView.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1953EE9798C2173966478DFE /* Pods-PixiView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixiView.release.xcconfig"; path = "Target Support Files/Pods-PixiView/Pods-PixiView.release.xcconfig"; sourceTree = "<group>"; };
 		1B21155F25B1CFB700732633 /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
 		1B21159E25B1D3DA00732633 /* URLParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameters.swift; sourceTree = "<group>"; };
 		1B2115A225B1F13900732633 /* PhotoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDataModel.swift; sourceTree = "<group>"; };
@@ -68,6 +71,9 @@
 		1BDE70D225B5B5DF00AD0746 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1BDE70D925B5DE3200AD0746 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		1BDE70DC25B5DEBE00AD0746 /* NetworkManagerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerClass.swift; sourceTree = "<group>"; };
+		1BDE70ED25B5EC8800AD0746 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		30C93464E400E324F33DD146 /* Pods_PixiView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PixiView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E16A7B6DBDC49F35AFF574DA /* Pods-PixiView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixiView.debug.xcconfig"; path = "Target Support Files/Pods-PixiView/Pods-PixiView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,12 +81,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36889F0C569DBD996BBA026F /* Pods_PixiView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D432BF4BB8FF9A821AFD71E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30C93464E400E324F33DD146 /* Pods_PixiView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1B21155E25B1CF9200732633 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +189,7 @@
 		1B2115F025B42C7600732633 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				1BDE70ED25B5EC8800AD0746 /* GoogleService-Info.plist */,
 				1B2115EA25B42B8800732633 /* DataManager.swift */,
 				1B2115ED25B42C3D00732633 /* UserDefaultHandler.swift */,
 				1B21160325B4B4D300732633 /* Pixabay-Info.plist */,
@@ -186,6 +202,8 @@
 			children = (
 				1B291ED525B1A62C002B6B8E /* PixiView */,
 				1B291ED425B1A62C002B6B8E /* Products */,
+				48F86A9C166CC57102204122 /* Pods */,
+				0D432BF4BB8FF9A821AFD71E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,6 +231,15 @@
 			path = PixiView;
 			sourceTree = "<group>";
 		};
+		48F86A9C166CC57102204122 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E16A7B6DBDC49F35AFF574DA /* Pods-PixiView.debug.xcconfig */,
+				1953EE9798C2173966478DFE /* Pods-PixiView.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -220,10 +247,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B291EE725B1A62F002B6B8E /* Build configuration list for PBXNativeTarget "PixiView" */;
 			buildPhases = (
+				34554002FF9EADB8A20D685E /* [CP] Check Pods Manifest.lock */,
 				1B291ECF25B1A62C002B6B8E /* Sources */,
 				1B291ED025B1A62C002B6B8E /* Frameworks */,
 				1B291ED125B1A62C002B6B8E /* Resources */,
 				1B21155A25B1C9A400732633 /* ShellScript */,
+				63A9C8F5716923A55C490A2C /* [CP] Embed Pods Frameworks */,
+				1BDE70EB25B5EB8800AD0746 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -272,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B21160C25B56FA200732633 /* Pixabay.xml in Resources */,
+				1BDE70EE25B5EC8800AD0746 /* GoogleService-Info.plist in Resources */,
 				1B21160425B4B4D300732633 /* Pixabay-Info.plist in Resources */,
 				1B291EE325B1A62F002B6B8E /* LaunchScreen.storyboard in Resources */,
 				1B2115B525B2032600732633 /* PhotoCell.xib in Resources */,
@@ -300,6 +331,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		1BDE70EB25B5EB8800AD0746 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		34554002FF9EADB8A20D685E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PixiView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63A9C8F5716923A55C490A2C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PixiView/Pods-PixiView-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PixiView/Pods-PixiView-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PixiView/Pods-PixiView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -472,6 +559,7 @@
 		};
 		1B291EE825B1A62F002B6B8E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E16A7B6DBDC49F35AFF574DA /* Pods-PixiView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -491,6 +579,7 @@
 		};
 		1B291EE925B1A62F002B6B8E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1953EE9798C2173966478DFE /* Pods-PixiView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -88,7 +88,7 @@ class PhotoDataPresenter {
             }
         } else {
             completion(false)
-             controller?.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "Connect to Internet to Resume")
+             controller?.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "")
         }
     }
     
