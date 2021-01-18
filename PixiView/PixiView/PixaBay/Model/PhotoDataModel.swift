@@ -34,7 +34,7 @@ class PhotoDataModel: NSObject {
          - Parameter pagination: The bool value indicating whether pagination is needed
          - Parameter completion: closure takes PhotoResponse object
     */
-    func callSearch(for searchKey: String, page: String, pagination: Bool, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
+    func callSearch(for searchKey: String, page: String, pagination: Bool, completion: @escaping (_ responseData: PhotoResponse?, _ error: ApiError?) -> Void) {
         let urlString = URLConstants.searchURL
         let inputParams: [String: AnyObject] = ["key": apiKey as AnyObject, "q": searchKey as AnyObject, "image_type": "photo" as AnyObject, "page": page as AnyObject]
         let request = URLRequestParameters(requestURL: urlString, requestType: .get, requestParams: inputParams)
@@ -49,7 +49,7 @@ class PhotoDataModel: NSObject {
                 case .success(let data):
                     do {
                         let jsonData = try JSONDecoder().decode(PhotoResponse.self, from: data)
-                        completion(jsonData)
+                        completion(jsonData, nil)
                         self.isPaginating = false
                         print(jsonData)
                     } catch {
@@ -58,15 +58,19 @@ class PhotoDataModel: NSObject {
                     }
                 case .failure(let error):
                     print(error)
-                    completion(nil)
+                    completion(nil, error)
                 }
             case ResponseStatusCode.badRequest.rawValue:
                 print("Bad Access")
+                completion(nil, ApiError.serverError)
             case ResponseStatusCode.serverError.rawValue:
                 print("Server Error")
+                completion(nil, ApiError.serverError)
             case ResponseStatusCode.tooManyRequests.rawValue:
+                completion(nil, ApiError.serverError)
                 print("Too many requests received. Try after some time")
             case ResponseStatusCode.unauthorised.rawValue:
+                completion(nil, ApiError.serverError)
                 print("Unauthorised")
             default:
                 print("Error")
@@ -89,7 +93,7 @@ class PhotoDataModel: NSObject {
          - Parameter pagination: The bool value indicating whether pagination is needed
          - Parameter completion: closure takes PhotoResponse  data object
     */
-    func callSearchXml(for searchKey: String, page: String, pagination: Bool, completion: @escaping (_ responseData: PhotoResponse?) -> Void) {
+    func callSearchXml(for searchKey: String, page: String, pagination: Bool, completion: @escaping (_ responseData: PhotoResponse?, _ error: ApiError?) -> Void) {
         let urlString = URLConstants.searchURL
         let inputParams: [String: AnyObject] = ["key": apiKey as AnyObject, "q": searchKey as AnyObject, "image_type": "photo" as AnyObject, "page": page as AnyObject]
         let request = URLRequestParameters(requestURL: urlString, requestType: .get, requestParams: inputParams)
@@ -107,16 +111,20 @@ class PhotoDataModel: NSObject {
                     self.isPaginating = false
                 case .failure(let error):
                     print(error)
-                    completion(nil)
+                    completion(nil, error)
                 }
             case ResponseStatusCode.badRequest.rawValue:
                 print("Bad Access")
+                completion(nil, ApiError.serverError)
             case ResponseStatusCode.serverError.rawValue:
                 print("Server Error")
+                completion(nil, ApiError.serverError)
             case ResponseStatusCode.tooManyRequests.rawValue:
                 print("Too many requests received. Try after some time")
+                completion(nil, ApiError.serverError)
             case ResponseStatusCode.unauthorised.rawValue:
                 print("Unauthorised")
+                completion(nil, ApiError.serverError)
             default:
                 print("Error")
             }

@@ -30,14 +30,65 @@ class PhotoDataPresenter {
          - Returns: The full name as a string value.
     */
     func getSearchResult(searchKey: String, pageNumber: Int, pagination: Bool, completion: @escaping (_ success: Bool) -> Void) {
-        dataModel.callSearch(for: searchKey, page: "\(pageNumber)", pagination: pagination) { [weak self] (photoData) in
-            if photoData?.hits.count == 0 {
-                completion(false)
-            } else {
-                self?.responseObject = photoData
-                self?.photoDataObject.append(contentsOf: photoData?.hits ?? [])
-                completion(true)
+        if NetworkManagerClass.sharedInstance.isReachability {
+            dataModel.callSearch(for: searchKey, page: "\(pageNumber)", pagination: pagination) { [weak self] (photoData, error) in
+                
+                if photoData == nil, error != nil {
+                    switch error {
+                    case .serverError:
+                        self?.controller?.showAlert(title: ErrorMessages.serverUnreachable.rawValue, message: "")
+                    default:
+                        self?.controller?.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "")
+                    }
+                }
+                
+                if photoData?.hits.count == 0 {
+                    completion(false)
+                } else {
+                    self?.responseObject = photoData
+                    self?.photoDataObject.append(contentsOf: photoData?.hits ?? [])
+                    completion(true)
+                }
             }
+        } else {
+            controller?.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "")
+        }
+    }
+    
+    /**
+        This method parses XML data.
+     
+         - Parameter searchKey: The text searched by user
+         - Parameter pageNumber: The number of page needed. New search is always zero and page number changes on scroll
+         - Parameter pagination: The bool value indicating whether pagination is needed
+         - Parameter completion: closure to indicate whether the completed executing successfully
+         - Returns: The full name as a string value.
+    */
+
+    func getSearchResultsFromXML(searchKey: String, pageNumber: Int, pagination: Bool, completion: @escaping (_ success: Bool) -> Void) {
+        if NetworkManagerClass.sharedInstance.isReachability {
+            dataModel.callSearchXml(for: searchKey, page: "\(pageNumber)", pagination: pagination) { [weak self] (photoData, error) in
+                
+                if photoData == nil, error != nil {
+                    switch error {
+                    case .serverError:
+                        self?.controller?.showAlert(title: ErrorMessages.serverUnreachable.rawValue, message: "")
+                    default:
+                        self?.controller?.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "")
+                    }
+                }
+                
+                if photoData?.hits.count == 0 {
+                    completion(false)
+                } else {
+                    self?.responseObject = photoData
+                    self?.photoDataObject.append(contentsOf: photoData?.hits ?? [])
+                    completion(true)
+                }
+            }
+        } else {
+            completion(false)
+             controller?.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "Connect to Internet to Resume")
         }
     }
     
@@ -71,28 +122,6 @@ class PhotoDataPresenter {
     */
     func isPaginating() -> Bool {
         return dataModel.getPaginatingFlag()
-    }
-    
-    /**
-        This method parses XML data.
-     
-         - Parameter searchKey: The text searched by user
-         - Parameter pageNumber: The number of page needed. New search is always zero and page number changes on scroll
-         - Parameter pagination: The bool value indicating whether pagination is needed
-         - Parameter completion: closure to indicate whether the completed executing successfully
-         - Returns: The full name as a string value.
-    */
-
-    func getSearchResultsFromXML(searchKey: String, pageNumber: Int, pagination: Bool, completion: @escaping (_ success: Bool) -> Void) {
-        dataModel.callSearchXml(for: searchKey, page: "\(pageNumber)", pagination: pagination) { [weak self] (photoData) in
-            if photoData?.hits.count == 0 {
-                completion(false)
-            } else {
-                self?.responseObject = photoData
-                self?.photoDataObject.append(contentsOf: photoData?.hits ?? [])
-                completion(true)
-            }
-        }
     }
     
     /**

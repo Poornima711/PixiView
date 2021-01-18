@@ -18,10 +18,14 @@ extension PhotoViewController: UICollectionViewDataSource {
         cell.setUIForCell()
         if let url = photoDataObject?[indexPath.row].previewURL {
             //download Image
-            cell.imageView.loadThumbnail(urlString: url) { success in
-                if success {
-                    print("Succes")
+            if NetworkManagerClass.sharedInstance.isReachability {
+                cell.imageView.loadThumbnail(urlString: url) { (success) in
+                    if success {
+                        print("Succes")
+                    }
                 }
+            } else {
+                self.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "Connect to Internet to Resume")
             }
         }
         return cell

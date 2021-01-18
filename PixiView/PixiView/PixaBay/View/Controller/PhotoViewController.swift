@@ -84,17 +84,21 @@ class PhotoViewController: UIViewController {
                 self?.photoCollectionView.reloadData()
             } else {
                 if self?.page == 1 { // show error only when page = 1 (becoz in first page itself we couldnot find the data), else dont show error
-                    self?.showAlertOnNoResults()
+                    self?.showAlert(title: "Oops!", message: "We could not find what you are looking for, try searching something else.")
                 }
             }
         }
     }
     
     /**
-        Show alert when no results found for the searched query.
+        Show alert when no Error.
+        - Parameter title: Alert Title
+        - Parameter message: Alert Message
     */
-    func showAlertOnNoResults() {
-        let alert = UIAlertController(title: "Oops!", message: "We could not find what you are looking for, try searching something else.", preferredStyle: .alert)
+    func showAlert(title: String, message: String) {
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(action)
         self.navigationController?.present(alert, animated: true, completion: nil)
