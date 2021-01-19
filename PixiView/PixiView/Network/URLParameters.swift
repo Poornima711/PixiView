@@ -15,6 +15,7 @@ enum ResponseStatusCode: Int {
     case badRequest = 400
     case unauthorised = 401
     case tooManyRequests = 429
+    case pageNotFound = 404
     case serverError = 500
 }
 
@@ -35,6 +36,7 @@ enum ErrorMessages: String {
     case noDataAvailable = "No data available"
     case generalError = "Error"
     case notJSON = "not a json"
+    case pageNotFound = "You reached the end of the page"
 }
 
 /**
@@ -44,6 +46,7 @@ enum ApiError: Error {
     case noInternetConnection
     case serverError
     case noDataAvailable
+    case pageNotFound
     case custom(_ error: Error, _ message: String)
 }
 

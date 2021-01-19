@@ -39,6 +39,8 @@ class PhotoDataPresenter {
                     switch error {
                     case .serverError:
                         self?.controller?.showAlert(title: ErrorMessages.serverUnreachable.rawValue, message: "")
+                    case .pageNotFound:
+                        self?.controller?.showAlert(title: ErrorMessages.pageNotFound.rawValue, message: "")
                     default:
                         self?.controller?.showAlert(title: ErrorMessages.networkUnreachable.rawValue, message: "")
                     }

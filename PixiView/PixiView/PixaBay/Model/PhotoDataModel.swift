@@ -118,6 +118,8 @@ class PhotoDataModel: NSObject {
             case ResponseStatusCode.badRequest.rawValue:
                 print("Bad Access")
                 completion(nil, ApiError.serverError)
+            case ResponseStatusCode.pageNotFound.rawValue:
+                completion(nil, ApiError.pageNotFound)
             case ResponseStatusCode.serverError.rawValue:
                 print("Server Error")
                 completion(nil, ApiError.serverError)
