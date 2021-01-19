@@ -154,6 +154,7 @@ extension PhotoViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        tapView.isHidden = false
         setUpTableView()
     }
 }

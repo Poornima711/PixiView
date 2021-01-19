@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Um8-AT-W1z">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -44,7 +45,10 @@
                                 <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search to find some awesome images" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pe3-uJ-bL2">
-                                <rect key="frame" x="47.5" y="436.5" width="319.5" height="23"/>
+                                <rect key="frame" x="20" y="435.5" width="374" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="tB0-K2-jwR"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -69,10 +73,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="29h-1b-EqS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pe3-uJ-bL2" secondAttribute="trailing" constant="20" id="EKx-M7-vDC"/>
                             <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="F4z-jz-KBE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="det-m5-yAC" secondAttribute="trailing" id="Ffy-C3-E11"/>
                             <constraint firstItem="LqN-Rt-PJV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IYy-Nd-SfV"/>
                             <constraint firstItem="CsI-lp-3Lj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LLL-Lz-tLI"/>
+                            <constraint firstItem="pe3-uJ-bL2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Lxw-x3-5aU"/>
                             <constraint firstItem="CsI-lp-3Lj" firstAttribute="top" secondItem="0Cs-TV-VMV" secondAttribute="bottom" id="S3O-Vg-WRe"/>
                             <constraint firstItem="Wvl-8x-wop" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TJn-nc-NJo"/>
                             <constraint firstItem="det-m5-yAC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TmC-YC-yJW"/>
@@ -81,7 +87,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LqN-Rt-PJV" secondAttribute="trailing" id="edr-yG-hr0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CsI-lp-3Lj" secondAttribute="trailing" id="epp-Af-Eah"/>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gwx-As-JsF"/>
-                            <constraint firstItem="pe3-uJ-bL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kLe-rb-FMa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LqN-Rt-PJV" secondAttribute="bottom" id="nmn-qX-06t"/>
                             <constraint firstItem="Wvl-8x-wop" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ph1-LI-3g7"/>
                             <constraint firstItem="0Cs-TV-VMV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tGb-5g-lSU"/>
