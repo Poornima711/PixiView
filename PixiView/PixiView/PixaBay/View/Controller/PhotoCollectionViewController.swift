@@ -26,7 +26,7 @@ extension PhotoViewController: UICollectionViewDataSource {
         if let url = photoDataObject?[indexPath.row].previewURL {
             //download Image
             if NetworkManagerClass.sharedInstance.isReachability {
-                cell.imageView.loadThumbnail(urlString: url) { (success) in
+                cell.imageView.loadThumbnail(urlString: url, activityIndicator: nil) { (success) in
                     if success {
                         print("Succes")
                     }

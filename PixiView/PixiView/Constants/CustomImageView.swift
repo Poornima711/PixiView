@@ -22,13 +22,17 @@ class CustomImageView: UIImageView {
         - Parameter urlString: The urlString of the image to be downloaded
         - Parameter completion: Bool value to indicate whether the execution has completed successfully
      */
-    func loadThumbnail(urlString: String, completion: @escaping (_ success: Bool) -> Void) {
+    func loadThumbnail(urlString: String, activityIndicator: UIActivityIndicatorView?, completion: @escaping (_ success: Bool) -> Void) {
         
         imageUrlString = urlString
         image = nil
         
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) {
             image = imageFromCache as? UIImage
+            if let activity = activityIndicator {
+                activity.stopAnimating()
+                activity.isHidden = true
+            }
             return
         }
         ApiHandler.sharedInstance.downloadImageFromURL(url: urlString) { (response) in
