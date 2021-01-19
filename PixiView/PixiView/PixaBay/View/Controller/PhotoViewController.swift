@@ -98,6 +98,8 @@ class PhotoViewController: UIViewController {
                 self?.activityIndicator.isHidden = true
                 self?.photoCollectionView.reloadData()
             } else {
+                self?.activityIndicator.stopAnimating()
+                self?.activityIndicator.isHidden = true
                 if self?.page == 1 { 
                     self?.showAlert(title: "Oops!", message: "We could not find what you are looking for, try searching something else.")
                 }
@@ -111,8 +113,6 @@ class PhotoViewController: UIViewController {
         - Parameter message: Alert Message
     */
     func showAlert(title: String, message: String) {
-        self.activityIndicator.stopAnimating()
-        self.activityIndicator.isHidden = true
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(action)
