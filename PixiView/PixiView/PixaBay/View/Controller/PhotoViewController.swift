@@ -30,6 +30,7 @@ class PhotoViewController: UIViewController {
     var pageViewController: UIPageViewController?
     var totalImages: Int?
     var page = 1
+    var isNewSearch = false
     var searchText: String = ""
     var rowHeight: CGFloat = 30.0
     static var searchQueryArray: [String] = []
@@ -125,6 +126,7 @@ extension PhotoViewController: UISearchBarDelegate {
         guard let query = searchBar.searchTextField.text else { return }
         self.helpLabel.isHidden = true
         self.view.endEditing(true)
+        isNewSearch = true
         tapView.isHidden = true
         self.suggestionTableView.isHidden = true
         presenter?.clearPhotoDataArray()
@@ -146,6 +148,7 @@ extension PhotoViewController: UISearchBarDelegate {
         } else {
             self.suggestionTableView.isHidden = false
             presenter?.clearPhotoDataArray()
+            isNewSearch = true
             suggestionTableView.reloadData()
         }
     }

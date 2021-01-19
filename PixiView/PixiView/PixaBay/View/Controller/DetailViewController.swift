@@ -20,6 +20,7 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
     var responseObject: PhotoResponse?
     var photoDataObject: [PhotoData]?
     var selectedPosition: Int = 0
+    var isNewSearch = false
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var pageView: UIView!
     
@@ -30,17 +31,21 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
         pageControl.numberOfPages = photoDataObject?.count ?? 0
         setupPageController()
         
-        //get controller for the specified index
-        let startingViewController: PageContentViewController! = self.viewForIndex(index: selectedPosition)
-        if let url = photoDataObject?[selectedPosition].largeImageURL {
-            startingViewController.url = url
+        if isNewSearch {
+            controllers.removeAll()
         }
-        //set the total number of images for page control
-        startingViewController.numberOfPages = responseObject?.totalHits ?? 0
-        let viewControllers: [UIViewController] = [startingViewController]
-        
-        //set controllers
-        pageController.setViewControllers(viewControllers, direction: .forward, animated: false)
+        for index in 0..<(photoDataObject?.count ?? 0) {
+            controllers.append(self.viewForIndex(index: index))
+        }
+    
+        if let firstController: PageContentViewController = controllers.first as? PageContentViewController {
+            firstController.url = photoDataObject?[selectedPosition].largeImageURL ?? ""
+            firstController.numberOfPages = responseObject?.totalHits ?? 0
+            firstController.index = selectedPosition
+            pageControl.currentPage = selectedPosition
+            //set controllers
+            pageController.setViewControllers([firstController], direction: .forward, animated: false, completion: nil)
+        }
     }
     
     /**
@@ -51,7 +56,6 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
         self.pageController?.dataSource = self
         self.pageController?.delegate = self
         self.pageController?.view.backgroundColor = .clear
-        //self.pageController?.view.frame = CGRect(x: 0, y: self.pageView.frame.origin.y, width: self.pageView.frame.width, height: self.pageView.frame.size.height)
         self.addChild(self.pageController!)
         self.pageView.addSubview(self.pageController!.view)
         
@@ -74,7 +78,6 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
     func viewForIndex(index: Int) -> PageContentViewController {
         
         let storyboard =  UIStoryboard(name: "PixiView", bundle: nil)
-        
         let pageContentObj: PageContentViewController = ((storyboard.instantiateViewController(withIdentifier: "PageContentViewController")) as? PageContentViewController)!
         
         pageContentObj.index = index
@@ -85,20 +88,41 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
     }
     
     // MARK: - Paging Delegates
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let controller = pageViewController.viewControllers![0]
+        pageControl.currentPage = controllers.firstIndex(of: controller)!
+    }
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let vController = viewController as? PageContentViewController else { return nil }
         
-        guard let temp = viewController as? PageContentViewController else { return UIViewController() }
-        var index = temp.index + 1
-        if index == photoDataObject?.count ?? 0 - 1 {
-            index = 0
+        let nextIndex = vController.index + 1
+        
+        guard controllers.count != nextIndex else {
+            return controllers.first
         }
-        pageControl.currentPage = index
-        return index >= (self.photoDataObject?.count ?? 0 - 1) ? nil: self.viewForIndex(index: index)
+
+        guard controllers.count > nextIndex else {
+            return nil
+        }
+        
+        return controllers[nextIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let temp = viewController as? PageContentViewController else { return UIViewController() }
-        pageControl.currentPage = temp.index
-        return temp.index == 0 ? nil: self.viewForIndex(index: temp.index - 1)
+        guard let vController = viewController as? PageContentViewController else { return nil }
+        
+        let previousIndex = vController.index - 1
+        
+        guard previousIndex >= 0 else {
+            return controllers.last
+        }
+
+        guard controllers.count > previousIndex else {
+            return nil
+        }
+        
+        return controllers[previousIndex]
     }
 }

@@ -52,11 +52,11 @@ extension PhotoViewController: UICollectionViewDataSource {
     func updateNextSet() {
         //increment page count
         page += 1
-        
+        isNewSearch = false
         guard let isPaginating = presenter?.isPaginating(), !isPaginating else {
             return
         }
-        
+
         //call Search API
         callSearchApi(pagination: true)
     }
@@ -72,6 +72,7 @@ extension PhotoViewController: UICollectionViewDelegate {
             detail.responseObject = responseObject
             detail.photoDataObject = photoDataObject
             detail.selectedPosition = indexPath.row
+            detail.isNewSearch = isNewSearch
             self.navigationController?.pushViewController(detail, animated: true)
         }
     }
