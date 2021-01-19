@@ -23,16 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "389DDD5B-E431-49EC-A66A-165104927566"
-            shouldBeEnabled = "Yes"
+            uuid = "FBB713C5-3D6D-478D-9007-36E893421E62"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PixiView/PixaBay/View/Controller/DetailViewController.swift"
+            filePath = "PixiView/PixaBay/View/Controller/PhotoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "callSearchApi(pagination:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

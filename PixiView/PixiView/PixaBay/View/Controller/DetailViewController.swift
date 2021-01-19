@@ -37,15 +37,10 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
         for index in 0..<(photoDataObject?.count ?? 0) {
             controllers.append(self.viewForIndex(index: index))
         }
-    
-        if let firstController: PageContentViewController = controllers.first as? PageContentViewController {
-            firstController.url = photoDataObject?[selectedPosition].largeImageURL ?? ""
-            firstController.numberOfPages = responseObject?.totalHits ?? 0
-            firstController.index = selectedPosition
-            pageControl.currentPage = selectedPosition
-            //set controllers
-            pageController.setViewControllers([firstController], direction: .forward, animated: false, completion: nil)
-        }
+        
+        //set controllers
+        pageController.setViewControllers([self.controllers[selectedPosition]], direction: .forward, animated: false, completion: nil)
+        pageControl.currentPage = selectedPosition
     }
     
     /**
@@ -96,9 +91,9 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let vController = viewController as? PageContentViewController else { return nil }
-        
+
         let nextIndex = vController.index + 1
-        
+
         guard controllers.count != nextIndex else {
             return controllers.first
         }
@@ -106,15 +101,15 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
         guard controllers.count > nextIndex else {
             return nil
         }
-        
+
         return controllers[nextIndex]
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let vController = viewController as? PageContentViewController else { return nil }
-        
+
         let previousIndex = vController.index - 1
-        
+
         guard previousIndex >= 0 else {
             return controllers.last
         }
@@ -122,7 +117,25 @@ class DetailViewController: UIViewController, UIPageViewControllerDataSource, UI
         guard controllers.count > previousIndex else {
             return nil
         }
-        
+
         return controllers[previousIndex]
     }
+    
+//    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+//         guard let currentIndex = controllers.firstIndex(of: viewController), currentIndex > 0 else {
+//              return nil
+//         }
+//         selectedPosition = currentIndex - 1
+//         let previousIndex = abs((currentIndex - 1) % controllers.count)
+//         return controllers[previousIndex]
+//    }
+//
+//    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+//         guard let currentIndex = controllers.firstIndex(of: viewController), (currentIndex + 1 <= (self.photoDataObject?.count ?? 0) - 1) else {
+//              return nil
+//         }
+//         selectedPosition = currentIndex + 1
+//         let nextIndex = abs((currentIndex + 1) % controllers.count)
+//         return controllers[nextIndex]
+//    }
 }
