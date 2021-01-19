@@ -29,10 +29,7 @@ class CustomImageView: UIImageView {
         
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) {
             image = imageFromCache as? UIImage
-            if let activity = activityIndicator {
-                activity.stopAnimating()
-                activity.isHidden = true
-            }
+            stopIndicator(activity: activityIndicator)
             return
         }
         ApiHandler.sharedInstance.downloadImageFromURL(url: urlString) { (response) in
@@ -75,5 +72,13 @@ class CustomImageView: UIImageView {
             self.image = imageToCache
         }
         imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
+    }
+    
+    /**
+     This method stops Activity Indicator
+     - Parameter activity: Activity Indicator Object
+     */
+    func stopIndicator(activity: UIActivityIndicatorView?) {
+        
     }
 }

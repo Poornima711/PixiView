@@ -33,7 +33,7 @@ class PageContentViewController: UIViewController {
         
         //download image
         if NetworkManagerClass.sharedInstance.isReachability {
-            self.imgView.loadThumbnail(urlString: url,activityIndicator: self.activityIndicator) { [weak self] (_) in
+            self.imgView.loadThumbnail(urlString: url, activityIndicator: self.activityIndicator) { [weak self] (_) in
                 //stop loader
                 self?.stopLoader()
             }
