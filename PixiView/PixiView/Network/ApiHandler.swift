@@ -152,8 +152,7 @@ extension ApiHandler: URLSessionDelegate {
             var trust: SecTrust?
             SecTrustCreateWithCertificates(cfCertificates, policy, &trust)
             
-            let pubKey = SecTrustCopyKey(trust!)
-            //SecTrustCopyPublicKey(trust!)
+            let pubKey = SecTrustCopyPublicKey(trust!)
             var error: Unmanaged<CFError>?
             if let pubKeyData = SecKeyCopyExternalRepresentation(pubKey!, &error) {
                 var keyWithHeader = Data(bytes: rsa2048Asn1Header, count: rsa2048Asn1Header.count)
